@@ -1,0 +1,17 @@
+{
+  "name": "warriorbeatgraphql",
+  "version": "1.0.0",
+  "description": "Serverless AWS AppSync App Backend",
+  "main": "index.js",
+  "author": "BradenM",
+  "license": "MIT",
+  "dependencies": {
+    "serverless-appsync-plugin": "^1.1.1",
+    "serverless-dynamodb-local": "^0.2.36",
+    "serverless-python-requirements": "^4.3.0"
+  },
+  "devDependencies": {
+    "serverless-appsync-offline": "aheissenberger/serverless-appsync-offline",
+    "serverless-offline": "^4.9.1"
+  }
+}

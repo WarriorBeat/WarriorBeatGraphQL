@@ -1,0 +1,63 @@
+type Mutation {
+  insertPollVote(option_id: ID!, created_at: String): PollVote!
+}
+
+type Query {
+  getPoll(id: ID!): Poll!
+  listPolls(limit: Int, nextToken: String): PollConnection
+  listPollOptions(poll_id: ID!, first: Int, after: String): PollOptionConnection
+  getPollResults(poll_id: ID!): PollResults!
+}
+
+type Subscription {
+  insertPollVote: PollVote @aws_subscribe(mutations: ["insertPollVote"])
+}
+
+type PollVote {
+  id: ID!
+  option_id: ID!
+  created_at: String
+}
+
+type PollVoteConnection {
+  items: [PollVote!]!
+  nextToken: String
+}
+
+type PollOption {
+  id: ID!
+  poll_id: ID!
+  text: String!
+  votes: Int
+}
+
+type PollOptionConnection {
+  items: [PollOption!]!
+  nextToken: String
+}
+
+type Poll {
+  id: ID!
+  question: String!
+  status: String!
+  created_at: AWSDate
+  updated_at: AWSDate
+  options(limit: Int, nextToken: String): PollOptionConnection
+}
+
+type PollConnection {
+  items: [Poll!]!
+  nextToken: String
+}
+
+type PollResults {
+  poll_id: ID!
+  total_votes: Int
+  results: [PollOption!]!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
