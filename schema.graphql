@@ -42,6 +42,7 @@ type Poll {
   status: String!
   created_at: AWSDate
   updated_at: AWSDate
+  total_votes: Int
   options(limit: Int, nextToken: String): PollOptionConnection
 }
 

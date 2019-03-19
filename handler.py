@@ -37,6 +37,7 @@ def insert_poll_vote(option_id):
 def get_poll_results(poll_id):
     opt_table = dynamodb.Table(TABLES['poll_options']['table_name'])
     vote_table = dynamodb.Table(TABLES['poll_votes']['table_name'])
+    poll_table = dynamodb.Table(TABLES['polls']['table_name'])
     results = {
         "poll_id": poll_id,
         "total_votes": 0,
@@ -65,6 +66,14 @@ def get_poll_results(poll_id):
             "text": opt['text'],
             "votes": vote_count
         })
+    # Update Total Votes
+    poll_table.update_item(
+        Key={'id': poll_id},
+        UpdateExpression="set total_votes = :t",
+        ExpressionAttributeValues={
+            ':t': results['total_votes']
+        }
+    )
     return results
 
 
