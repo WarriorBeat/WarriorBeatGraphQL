@@ -6,6 +6,7 @@
   "author": "BradenM",
   "license": "MIT",
   "dependencies": {
+    "aws-amplify-serverless-plugin": "^1.4.1",
     "serverless-appsync-plugin": "^1.1.1",
     "serverless-dynamodb-local": "^0.2.36",
     "serverless-python-requirements": "^4.3.0"

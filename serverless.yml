@@ -12,6 +12,7 @@ plugins:
   - serverless-dynamodb-local
   - serverless-appsync-offline
   - serverless-offline
+  - aws-amplify-serverless-plugin
 
 custom:
   accountId: "881433986874"
@@ -43,6 +44,12 @@ custom:
           - table: PollVotes
             sources: [seed-data/poll_votes.json]
   # END SLS DEV ENV ===================
+
+  # AWS Amplify ===================
+  amplify:
+    - filename: amplify/aws-exports.js
+      type: javascript
+  # END AWS Amplify ===================
 
   # AppSync ===================
   appSync:
