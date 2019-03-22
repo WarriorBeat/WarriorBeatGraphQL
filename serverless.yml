@@ -19,6 +19,10 @@ custom:
   # Python Runtime
   pythonRequirements:
     dockerizePip: true
+    slim: true
+    useDownloadCache: true
+    useStaticCache: true
+    zip: true
   # END PYTHON RUNTIME ===================
 
   # SLS Dev Env
@@ -309,6 +313,12 @@ resources:
               ReadCapacityUnits: 1
               WriteCapacityUnits: 1
 
+package:
+  exclude:
+    - .git/**
+    - .amplify/**
+    - .seed-data/**
+    - node_modules/**
 
 
 functions:

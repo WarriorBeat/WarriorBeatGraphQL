@@ -5,6 +5,10 @@
   "main": "index.js",
   "author": "BradenM",
   "license": "MIT",
+  "scripts": {
+    "deploy": "sls deploy",
+    "clean": "rm -rf .serverless"
+  },
   "dependencies": {
     "aws-amplify-serverless-plugin": "^1.4.1",
     "serverless-appsync-plugin": "^1.1.1",
