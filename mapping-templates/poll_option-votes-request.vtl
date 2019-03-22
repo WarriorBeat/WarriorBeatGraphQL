@@ -1,0 +1,14 @@
+{
+    "version": "2017-02-28",
+    "operation": "Query",
+    "index": "optionId-index",
+    "query": {
+        "expression": "option_id = :option_id",
+        "expressionValues": {
+            ":option_id": {
+                "S": "$context.source.id"
+            }
+        }
+    }
+}
+

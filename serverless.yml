@@ -56,6 +56,7 @@ custom:
     name: WarriorBeatAppSync
     authenticationType: API_KEY
     mappingTemplates:
+      # QUERIES
       - dataSource: Polls
         type: Query
         field: getPoll
@@ -71,12 +72,19 @@ custom:
         field: listPollOptions
         request: "listPollOptions-request-mapping-template.vtl"
         response: "common-response-mapping-template.vtl"
-      - dataSource: LambdaResolver
-        type: Query
-        field: getPollResults
-        request: "getPollResults-request-mapping-template.vtl"
-        response: "common-response-mapping-template.vtl"
-      - dataSource: LambdaResolver
+      # QUERIES - Type Fields
+      - dataSource: PollOptions
+        type: Poll
+        field: options
+        request: "poll-options-request.vtl"
+        response: "common-list-response.vtl"
+      - dataSource: PollVotes
+        type: PollOption
+        field: votes
+        request: "poll_option-votes-request.vtl"
+        response: "list-size-response.vtl"
+      # MUTATIONS
+      - dataSource: PollVotes
         type: Mutation
         field: insertPollVote
         request: "insertPollVote-request-mapping-template.vtl"
@@ -242,6 +250,8 @@ resources:
           - 
             AttributeName: id
             KeyType: HASH
+          - AttributeName: poll_id
+            KeyType: RANGE
         AttributeDefinitions:
           - 
             AttributeName: id
@@ -272,6 +282,9 @@ resources:
           - 
             AttributeName: id
             KeyType: HASH
+          - 
+            AttributeName: option_id
+            KeyType: RANGE
         AttributeDefinitions:
           - 
             AttributeName: id
@@ -295,6 +308,8 @@ resources:
             ProvisionedThroughput:
               ReadCapacityUnits: 1
               WriteCapacityUnits: 1
+
+
 
 functions:
   lambda_handler:

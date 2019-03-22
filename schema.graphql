@@ -6,11 +6,10 @@ type Query {
   getPoll(id: ID!): Poll!
   listPolls(limit: Int, nextToken: String): PollConnection
   listPollOptions(poll_id: ID!, first: Int, after: String): PollOptionConnection
-  getPollResults(poll_id: ID!): PollResults!
 }
 
 type Subscription {
-  insertPollVote: PollVote @aws_subscribe(mutations: ["insertPollVote"])
+  insertedPollVote: PollVote @aws_subscribe(mutations: ["insertPollVote"])
 }
 
 type PollVote {
@@ -43,18 +42,12 @@ type Poll {
   created_at: AWSDate
   updated_at: AWSDate
   total_votes: Int
-  options(limit: Int, nextToken: String): PollOptionConnection
+  options: [PollOption]
 }
 
 type PollConnection {
   items: [Poll!]!
   nextToken: String
-}
-
-type PollResults {
-  poll_id: ID!
-  total_votes: Int
-  results: [PollOption!]!
 }
 
 schema {

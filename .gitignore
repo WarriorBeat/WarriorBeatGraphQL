@@ -207,3 +207,7 @@ dmypy.json
 .serverless
 
 # End of https://www.gitignore.io/api/node,python,serverless
+
+\.requirements\.zip
+
+amplify/

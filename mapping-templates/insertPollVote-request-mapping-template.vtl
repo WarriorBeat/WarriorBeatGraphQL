@@ -1,8 +1,12 @@
 {
-    "version": "2017-02-28",
-    "operation": "Invoke",
-    "payload": {
-        "field": "insertPollVote",
-        "arguments":  $utils.toJson($context.arguments)
+    "version" : "2017-02-28",
+    "operation" : "PutItem",
+    "key" : {
+        "option_id" : { "S" : "${ctx.args.option_id}" },
+        "id" : { "S" : "$util.autoId()" },
+    },
+    "attributeValues" : {
+        #set( $createDate = $util.time.nowFormatted("yyyy-MM-dd") )
+        "created_at" : { "S" : "${createDate}" }
     }
 }

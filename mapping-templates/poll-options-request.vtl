@@ -1,0 +1,14 @@
+{
+    "version": "2017-02-28",
+    "operation": "Query",
+    "index": "pollId-index",
+    "query": {
+        "expression": "poll_id = :poll_id",
+        "expressionValues": {
+            ":poll_id": {
+                "S": "$context.source.id"
+            }
+        }
+    }
+}
+
