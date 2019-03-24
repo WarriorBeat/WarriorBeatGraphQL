@@ -1,0 +1,51 @@
+- type: AMAZON_DYNAMODB
+  name: Polls
+  description: "Polls Table"
+  config:
+    tableName: "Polls"
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:Query"
+          - "dynamodb:Scan"
+          - "dynamodb:UpdateItem"
+          - "dynamodb:DeleteItem"
+          - "dynamodb:PutItem"
+          - "dynamodb:GetItem"
+        Resource:
+          - "arn:aws:dynamodb:${self:provider.region}:*:table/Polls"
+          - "arn:aws:dynamodb:${self:provider.region}:*:table/Polls/*"
+- type: AMAZON_DYNAMODB
+  name: PollOptions
+  description: "Poll Options Table"
+  config:
+    tableName: "PollOptions"
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:Query"
+          - "dynamodb:Scan"
+          - "dynamodb:UpdateItem"
+          - "dynamodb:DeleteItem"
+          - "dynamodb:PutItem"
+          - "dynamodb:GetItem"
+        Resource:
+          - "arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions"
+          - "arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions/*"
+- type: AMAZON_DYNAMODB
+  name: PollVotes
+  description: "Poll Votes Table"
+  config:
+    tableName: "PollVotes"
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - "dynamodb:Query"
+          - "dynamodb:Scan"
+          - "dynamodb:UpdateItem"
+          - "dynamodb:DeleteItem"
+          - "dynamodb:PutItem"
+          - "dynamodb:GetItem"
+        Resource:
+          - "arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes"
+          - "arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes/*"

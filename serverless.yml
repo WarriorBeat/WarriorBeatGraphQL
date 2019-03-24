@@ -59,99 +59,15 @@ custom:
   appSync:
     name: WarriorBeatAppSync
     authenticationType: API_KEY
+    schema:
+      - schema/base.graphql
+      - schema/polls.graphql
     mappingTemplates:
-      # QUERIES
-      - dataSource: Polls
-        type: Query
-        field: pollGet
-        request: "polls/pollGet-request.vtl"
-        response: "common-response.vtl"
-      - dataSource: Polls
-        type: Query
-        field: pollList
-        request: "polls/pollList-request.vtl"
-        response: "common-response.vtl"
-      - dataSource: PollOptions
-        type: Query
-        field: pollGetOptions
-        request: "polls/pollGetOptions-request.vtl"
-        response: "common-response.vtl"
-      # QUERIES - Type Fields
-      - dataSource: PollOptions
-        type: Poll
-        field: options
-        request: "polls/poll_options-request.vtl"
-        response: "common-list-response.vtl"
-      - dataSource: PollVotes
-        type: PollOption
-        field: votes
-        request: "polls/pollOption_votes-request.vtl"
-        response: "list-size-response.vtl"
-      # MUTATIONS
-      - dataSource: PollVotes
-        type: Mutation
-        field: pollAddVote
-        request: "polls/pollAddVote-request.vtl"
-        response: "common-response.vtl"
+      - ${file(mapping-templates/polls/map.yml)}
     serviceRole: "AppSyncServiceRole"
     dataSources:
-      - type: AWS_LAMBDA
-        name: LambdaResolver
-        description: "Lambda Resolver for WarriorBeat GraphQL API"
-        config: 
-          lambdaFunctionArn: "arn:aws:lambda:${self:provider.region}:${self:custom.accountId}:function:warriorbeat-graphql-dev-lambda_handler"
-          serviceRoleArn: "arn:aws:iam::${self:custom.accountId}:role/Lambda-${self:custom.appSync.serviceRole}"
-      - type: AMAZON_DYNAMODB
-        name: Polls
-        description: "Polls Table"
-        config:
-          tableName: "Polls"
-          iamRoleStatements:
-            - Effect: "Allow"
-              Action:
-                - "dynamodb:Query"
-                - "dynamodb:Scan"
-                - "dynamodb:UpdateItem"
-                - "dynamodb:DeleteItem"
-                - "dynamodb:PutItem"
-                - "dynamodb:GetItem"
-              Resource:
-                - "arn:aws:dynamodb:${self:provider.region}:*:table/Polls"
-                - "arn:aws:dynamodb:${self:provider.region}:*:table/Polls/*"
-      - type: AMAZON_DYNAMODB
-        name: PollOptions
-        description: "Poll Options Table"
-        config:
-          tableName: "PollOptions"
-          iamRoleStatements:
-            - Effect: "Allow"
-              Action:
-                - "dynamodb:Query"
-                - "dynamodb:Scan"
-                - "dynamodb:UpdateItem"
-                - "dynamodb:DeleteItem"
-                - "dynamodb:PutItem"
-                - "dynamodb:GetItem"
-              Resource:
-                - "arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions"
-                - "arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions/*"
-      - type: AMAZON_DYNAMODB
-        name: PollVotes
-        description: "Poll Votes Table"
-        config:
-          tableName: "PollVotes"
-          iamRoleStatements:
-            - Effect: "Allow"
-              Action:
-                - "dynamodb:Query"
-                - "dynamodb:Scan"
-                - "dynamodb:UpdateItem"
-                - "dynamodb:DeleteItem"
-                - "dynamodb:PutItem"
-                - "dynamodb:GetItem"
-              Resource:
-                - "arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes"
-                - "arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes/*"
+      - ${file(schema/data/LambdaResolver.yml)}
+      - ${file(schema/data/polls.yml)}
   # END AppSync ===================
 
 resources:

@@ -12,10 +12,6 @@ type Subscription {
   pollAddedVote: PollVote @aws_subscribe(mutations: ["pollAddVote"])
 }
 
-interface Node {
-  id: ID!
-}
-
 type PollVote {
   id: ID!
   optionId: ID!
@@ -52,10 +48,4 @@ type Poll implements Node {
 type PollConnection {
   items: [Poll!]!
   nextToken: String
-}
-
-schema {
-  query: Query
-  mutation: Mutation
-  subscription: Subscription
 }

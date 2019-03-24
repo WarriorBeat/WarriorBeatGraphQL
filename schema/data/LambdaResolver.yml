@@ -1,0 +1,6 @@
+LambdaResolver:
+  type: AWS_LAMBDA
+  description: "Lambda Resolver for WarriorBeat GraphQL API"
+  config: 
+    lambdaFunctionArn: "arn:aws:lambda:${self:provider.region}:${self:custom.accountId}:function:warriorbeat-graphql-dev-lambda_handler"
+    serviceRoleArn: "arn:aws:iam::${self:custom.accountId}:role/Lambda-${self:custom.appSync.serviceRole}"

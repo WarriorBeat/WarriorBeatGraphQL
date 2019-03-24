@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "deploy": "sls deploy",
-    "clean": "rm -rf .serverless",
+    "clean:sls": "sls requirements clean && sls requirements cleanCache && rm -rf .serverless",
+    "clean": "yarn run clean:sls && rm -rf node_modules && yarn cache clean && yarn",
     "local": "sls offline start"
   },
   "dependencies": {
@@ -17,7 +18,7 @@
     "serverless-python-requirements": "^4.3.0"
   },
   "devDependencies": {
-    "serverless-appsync-offline": "aheissenberger/serverless-appsync-offline",
+    "serverless-appsync-offline": "^1.3.2",
     "serverless-offline": "^4.9.1"
   }
 }
