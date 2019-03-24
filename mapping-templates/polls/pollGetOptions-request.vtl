@@ -3,10 +3,10 @@
     "operation": "Query",
     "index": "pollId-index",
     "query": {
-        "expression": "poll_id = :poll_id",
+        "expression": "pollId = :pollId",
         "expressionValues": {
-            ":poll_id": {
-                "S": "$ctx.args.poll_id"
+            ":pollId": {
+                "S": "$ctx.args.pollId"
             }
         }
     },

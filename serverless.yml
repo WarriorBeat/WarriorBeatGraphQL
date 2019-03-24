@@ -1,4 +1,4 @@
-service: warriorbeat-graphql # NOTE: update this with your service name
+service: warriorbeat-graphql
 
 provider:
   name: aws
@@ -63,35 +63,35 @@ custom:
       # QUERIES
       - dataSource: Polls
         type: Query
-        field: getPoll
-        request: "polls/getPoll-request.vtl"
+        field: pollGet
+        request: "polls/pollGet-request.vtl"
         response: "common-response.vtl"
       - dataSource: Polls
         type: Query
-        field: listPolls
-        request: "polls/listPolls-request.vtl"
+        field: pollList
+        request: "polls/pollList-request.vtl"
         response: "common-response.vtl"
       - dataSource: PollOptions
         type: Query
-        field: listPollOptions
-        request: "polls/listPollOptions-request.vtl"
+        field: pollGetOptions
+        request: "polls/pollGetOptions-request.vtl"
         response: "common-response.vtl"
       # QUERIES - Type Fields
       - dataSource: PollOptions
         type: Poll
         field: options
-        request: "polls/poll-options-request.vtl"
+        request: "polls/poll_options-request.vtl"
         response: "common-list-response.vtl"
       - dataSource: PollVotes
         type: PollOption
         field: votes
-        request: "polls/poll_option-votes-request.vtl"
+        request: "polls/pollOption_votes-request.vtl"
         response: "list-size-response.vtl"
       # MUTATIONS
       - dataSource: PollVotes
         type: Mutation
-        field: insertPollVote
-        request: "polls/insertPollVote-request.vtl"
+        field: pollAddVote
+        request: "polls/pollAddVote-request.vtl"
         response: "common-response.vtl"
     serviceRole: "AppSyncServiceRole"
     dataSources:
@@ -254,14 +254,14 @@ resources:
           - 
             AttributeName: id
             KeyType: HASH
-          - AttributeName: poll_id
+          - AttributeName: pollId
             KeyType: RANGE
         AttributeDefinitions:
           - 
             AttributeName: id
             AttributeType: S
           - 
-            AttributeName: poll_id
+            AttributeName: pollId
             AttributeType: S
         ProvisionedThroughput:
           ReadCapacityUnits: 1
@@ -272,7 +272,7 @@ resources:
             IndexName: pollId-index
             KeySchema:
               -
-                AttributeName: poll_id
+                AttributeName: pollId
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
@@ -287,14 +287,14 @@ resources:
             AttributeName: id
             KeyType: HASH
           - 
-            AttributeName: option_id
+            AttributeName: optionId
             KeyType: RANGE
         AttributeDefinitions:
           - 
             AttributeName: id
             AttributeType: S
           - 
-            AttributeName: option_id
+            AttributeName: optionId
             AttributeType: S
         ProvisionedThroughput:
           ReadCapacityUnits: 1
@@ -305,7 +305,7 @@ resources:
             IndexName: optionId-index
             KeySchema:
               -
-                AttributeName: option_id
+                AttributeName: optionId
                 KeyType: HASH
             Projection:
               ProjectionType: ALL

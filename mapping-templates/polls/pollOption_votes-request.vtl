@@ -1,11 +1,11 @@
 {
     "version": "2017-02-28",
     "operation": "Query",
-    "index": "pollId-index",
+    "index": "optionId-index",
     "query": {
-        "expression": "poll_id = :poll_id",
+        "expression": "optionId = :optionId",
         "expressionValues": {
-            ":poll_id": {
+            ":optionId": {
                 "S": "$context.source.id"
             }
         }

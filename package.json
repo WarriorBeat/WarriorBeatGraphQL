@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "deploy": "sls deploy",
-    "clean": "rm -rf .serverless"
+    "clean": "rm -rf .serverless",
+    "local": "sls offline start"
   },
   "dependencies": {
     "aws-amplify-serverless-plugin": "^1.4.1",

@@ -1,21 +1,25 @@
 type Mutation {
-  insertPollVote(option_id: ID!, created_at: String): PollVote!
+  pollAddVote(optionId: ID!, createdOn: String): PollVote
 }
 
 type Query {
-  getPoll(id: ID!): Poll!
-  listPolls(limit: Int, nextToken: String): PollConnection
-  listPollOptions(poll_id: ID!, first: Int, after: String): PollOptionConnection
+  pollGet(id: ID!): Poll
+  pollList(limit: Int, nextToken: String): PollConnection
+  pollGetOptions(pollId: ID!, first: Int, after: String): PollOptionConnection
 }
 
 type Subscription {
-  insertedPollVote: PollVote @aws_subscribe(mutations: ["insertPollVote"])
+  pollAddedVote: PollVote @aws_subscribe(mutations: ["pollAddVote"])
+}
+
+interface Node {
+  id: ID!
 }
 
 type PollVote {
   id: ID!
-  option_id: ID!
-  created_at: String
+  optionId: ID!
+  createdOn: AWSDateTime
 }
 
 type PollVoteConnection {
@@ -25,7 +29,7 @@ type PollVoteConnection {
 
 type PollOption {
   id: ID!
-  poll_id: ID!
+  pollId: ID!
   text: String!
   votes: Int
 }
@@ -35,13 +39,13 @@ type PollOptionConnection {
   nextToken: String
 }
 
-type Poll {
+type Poll implements Node {
   id: ID!
   question: String!
-  status: String!
-  created_at: AWSDate
-  updated_at: AWSDate
-  total_votes: Int
+  isOpen: Boolean!
+  createdOn: AWSDateTime
+  lastUpdated: AWSDateTime
+  totalVotes: Int
   options: [PollOption]
 }
 

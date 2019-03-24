@@ -1,12 +1,12 @@
 [
   {
     "id": "1",
-    "poll_id": "1",
+    "pollId": "1",
     "text": "Yes"
   },
   {
     "id": "2",
-    "poll_id": "1",
+    "pollId": "1",
     "text": "No"
   }
 ]
