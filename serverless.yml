@@ -64,35 +64,35 @@ custom:
       - dataSource: Polls
         type: Query
         field: getPoll
-        request: "getPoll-request-mapping-template.vtl"
-        response: "common-response-mapping-template.vtl"
+        request: "polls/getPoll-request.vtl"
+        response: "common-response.vtl"
       - dataSource: Polls
         type: Query
         field: listPolls
-        request: "listPolls-request-mapping-template.vtl"
-        response: "common-response-mapping-template.vtl"
+        request: "polls/listPolls-request.vtl"
+        response: "common-response.vtl"
       - dataSource: PollOptions
         type: Query
         field: listPollOptions
-        request: "listPollOptions-request-mapping-template.vtl"
-        response: "common-response-mapping-template.vtl"
+        request: "polls/listPollOptions-request.vtl"
+        response: "common-response.vtl"
       # QUERIES - Type Fields
       - dataSource: PollOptions
         type: Poll
         field: options
-        request: "poll-options-request.vtl"
+        request: "polls/poll-options-request.vtl"
         response: "common-list-response.vtl"
       - dataSource: PollVotes
         type: PollOption
         field: votes
-        request: "poll_option-votes-request.vtl"
+        request: "polls/poll_option-votes-request.vtl"
         response: "list-size-response.vtl"
       # MUTATIONS
       - dataSource: PollVotes
         type: Mutation
         field: insertPollVote
-        request: "insertPollVote-request-mapping-template.vtl"
-        response: "common-response-mapping-template.vtl"
+        request: "polls/insertPollVote-request.vtl"
+        response: "common-response.vtl"
     serviceRole: "AppSyncServiceRole"
     dataSources:
       - type: AWS_LAMBDA
