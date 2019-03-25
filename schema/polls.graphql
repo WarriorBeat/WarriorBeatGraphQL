@@ -1,5 +1,5 @@
 type Mutation {
-  pollAddVote(optionId: ID!, createdOn: String): PollVote
+  pollAddVote(pollId: ID!, optionId: ID!, createdOn: String): PollVote
 }
 
 type Query {
@@ -14,6 +14,7 @@ type Subscription {
 
 type PollVote {
   id: ID!
+  pollId: ID!
   optionId: ID!
   createdOn: AWSDateTime
 }

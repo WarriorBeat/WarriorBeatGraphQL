@@ -15,7 +15,7 @@ plugins:
   - aws-amplify-serverless-plugin
 
 custom:
-  accountId: "881433986874"
+  accountId: '881433986874'
   # Python Runtime
   pythonRequirements:
     dockerizePip: true
@@ -30,7 +30,7 @@ custom:
     port: 62222
     dynamodb:
       client:
-        endpoint: "http://localhost:8000"
+        endpoint: 'http://localhost:8000'
         region: localhost
   dynamodb:
     start:
@@ -64,132 +64,118 @@ custom:
       - schema/polls.graphql
     mappingTemplates:
       - ${file(mapping-templates/polls/map.yml)}
-    serviceRole: "AppSyncServiceRole"
+    serviceRole: 'AppSyncServiceRole'
     dataSources:
       - ${file(schema/data/LambdaResolver.yml)}
       - ${file(schema/data/polls.yml)}
       - ${file(schema/data/none.yml)}
+
   # END AppSync ===================
 
 resources:
   Resources:
     AppSyncHandler:
-      Type: "AWS::IAM::Role"
+      Type: 'AWS::IAM::Role'
       Properties:
-        RoleName: "Lambda-AppSyncHandler"
+        RoleName: 'Lambda-AppSyncHandler'
         AssumeRolePolicyDocument:
-          Version: "2012-10-17"
+          Version: '2012-10-17'
           Statement:
-            -
-              Effect: "Allow"
+            - Effect: 'Allow'
               Principal:
                 Service:
-                  - "lambda.amazonaws.com"
+                  - 'lambda.amazonaws.com'
               Action:
-                - "sts:AssumeRole"
+                - 'sts:AssumeRole'
         Policies:
-          -
-            PolicyName: "LambdaRole-Policy"
+          - PolicyName: 'LambdaRole-Policy'
             PolicyDocument:
-              Version: "2012-10-17"
+              Version: '2012-10-17'
               Statement:
-                -
-                  Effect: "Allow"
-                  Action: 
-                    - "logs:CreateLogStream"
-                    - "logs:PutLogEvents"
-                  Resource:
-                    - "arn:aws:logs:us-east-1:881433986874:log-group:/aws/lambda/warriorbeat-graphql-dev-lambda_handler:*"
-                    - "arn:aws:logs:us-east-1:881433986874:log-group:/aws/lambda/warriorbeat-graphql-dev-lambda_handler:*:*"
-          -
-            PolicyName: "LambdaRole-DynamoDB-Policy"
-            PolicyDocument:
-              Version: "2012-10-17"
-              Statement:
-                - 
-                  Effect: "Allow"
+                - Effect: 'Allow'
                   Action:
-                    - "dynamodb:Query"
-                    - "dynamodb:Scan"
-                    - "dynamodb:UpdateItem"
-                    - "dynamodb:DeleteItem"
-                    - "dynamodb:PutItem"
-                    - "dynamodb:GetItem"
+                    - 'logs:CreateLogStream'
+                    - 'logs:PutLogEvents'
                   Resource:
-                    - "arn:aws:dynamodb:${self:provider.region}:*:table/Polls"
-                    - "arn:aws:dynamodb:${self:provider.region}:*:table/Polls/*"
-                    - "arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions"
-                    - "arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions/*"
-                    - "arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes"
-                    - "arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes/*"
+                    - 'arn:aws:logs:us-east-1:881433986874:log-group:/aws/lambda/warriorbeat-graphql-dev-lambda_handler:*'
+                    - 'arn:aws:logs:us-east-1:881433986874:log-group:/aws/lambda/warriorbeat-graphql-dev-lambda_handler:*:*'
+          - PolicyName: 'LambdaRole-DynamoDB-Policy'
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: 'Allow'
+                  Action:
+                    - 'dynamodb:Query'
+                    - 'dynamodb:Scan'
+                    - 'dynamodb:UpdateItem'
+                    - 'dynamodb:DeleteItem'
+                    - 'dynamodb:PutItem'
+                    - 'dynamodb:GetItem'
+                  Resource:
+                    - 'arn:aws:dynamodb:${self:provider.region}:*:table/Polls'
+                    - 'arn:aws:dynamodb:${self:provider.region}:*:table/Polls/*'
+                    - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions'
+                    - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions/*'
+                    - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes'
+                    - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes/*'
     AppSyncServiceRole:
-      Type: "AWS::IAM::Role"
+      Type: 'AWS::IAM::Role'
       Properties:
-        RoleName: "Lambda-AppSyncServiceRole"
+        RoleName: 'Lambda-AppSyncServiceRole'
         AssumeRolePolicyDocument:
-          Version: "2012-10-17"
+          Version: '2012-10-17'
           Statement:
-            -
-              Effect: "Allow"
+            - Effect: 'Allow'
               Principal:
                 Service:
-                  - "appsync.amazonaws.com"
+                  - 'appsync.amazonaws.com'
               Action:
-                - "sts:AssumeRole"
+                - 'sts:AssumeRole'
         Policies:
-          -
-            PolicyName: "Lambda-AppSyncServiceRole-Policy"
+          - PolicyName: 'Lambda-AppSyncServiceRole-Policy'
             PolicyDocument:
-              Version: "2012-10-17"
+              Version: '2012-10-17'
               Statement:
-              -
-                Effect: "Allow"
-                Action:
-                  - "lambda:invokeFunction"
-                Resource:
-                  - "arn:aws:lambda:${self:provider.region}:*:function:warriorbeat-graphql-dev-lambda_handler"
-                  - "arn:aws:lambda:${self:provider.region}:*:function:warriorbeat-graphql-dev-lambda_handler:*"
+                - Effect: 'Allow'
+                  Action:
+                    - 'lambda:invokeFunction'
+                  Resource:
+                    - 'arn:aws:lambda:${self:provider.region}:*:function:warriorbeat-graphql-dev-lambda_handler'
+                    - 'arn:aws:lambda:${self:provider.region}:*:function:warriorbeat-graphql-dev-lambda_handler:*'
     PollTable:
-      Type: "AWS::DynamoDB::Table"
+      Type: 'AWS::DynamoDB::Table'
       Properties:
         KeySchema:
-          - 
-            AttributeName: id
+          - AttributeName: id
             KeyType: HASH
         AttributeDefinitions:
-          - 
-            AttributeName: id
+          - AttributeName: id
             AttributeType: S
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: "Polls"
+        TableName: 'Polls'
     PollOptionsTable:
-      Type: "AWS::DynamoDB::Table"
+      Type: 'AWS::DynamoDB::Table'
       Properties:
         KeySchema:
-          - 
-            AttributeName: id
+          - AttributeName: id
             KeyType: HASH
           - AttributeName: pollId
             KeyType: RANGE
         AttributeDefinitions:
-          - 
-            AttributeName: id
+          - AttributeName: id
             AttributeType: S
-          - 
-            AttributeName: pollId
+          - AttributeName: pollId
             AttributeType: S
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: "PollOptions"
+        TableName: 'PollOptions'
         GlobalSecondaryIndexes:
-          -
-            IndexName: pollId-index
+          - IndexName: pollId-index
             KeySchema:
-              -
-                AttributeName: pollId
+              - AttributeName: pollId
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
@@ -197,32 +183,37 @@ resources:
               ReadCapacityUnits: 1
               WriteCapacityUnits: 1
     PollVotesTable:
-      Type: "AWS::DynamoDB::Table"
+      Type: 'AWS::DynamoDB::Table'
       Properties:
         KeySchema:
-          - 
-            AttributeName: id
+          - AttributeName: id
             KeyType: HASH
-          - 
-            AttributeName: optionId
+          - AttributeName: optionId
             KeyType: RANGE
         AttributeDefinitions:
-          - 
-            AttributeName: id
+          - AttributeName: id
             AttributeType: S
-          - 
-            AttributeName: optionId
+          - AttributeName: optionId
+            AttributeType: S
+          - AttributeName: pollId
             AttributeType: S
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: "PollVotes"
+        TableName: 'PollVotes'
         GlobalSecondaryIndexes:
-          -
-            IndexName: optionId-index
+          - IndexName: optionId-index
             KeySchema:
-              -
-                AttributeName: optionId
+              - AttributeName: optionId
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
+          - IndexName: pollId-index
+            KeySchema:
+              - AttributeName: pollId
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
@@ -237,8 +228,7 @@ package:
     - .seed-data/**
     - node_modules/**
 
-
 functions:
   lambda_handler:
     handler: handler.lambda_handler
-    role: "AppSyncHandler"
+    role: 'AppSyncHandler'

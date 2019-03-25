@@ -30,6 +30,11 @@
   request: 'polls/poll_createdOn-request.vtl'
   response: 'common-response.vtl'
 
+- dataSource: PollVotes
+  type: Poll
+  field: totalVotes
+  request: 'polls/poll_totalVotes-request.vtl'
+  response: 'list-size-response.vtl'
 
 - dataSource: PollVotes
   type: PollOption

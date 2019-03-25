@@ -2,11 +2,12 @@
     "version" : "2017-02-28",
     "operation" : "PutItem",
     "key" : {
-        "optionId" : { "S" : "${ctx.args.optionId}" },
-        "id" : { "S" : "$util.autoId()" },
+        "optionId" : $util.dynamodb.toDynamoDBJson($ctx.args.optionId),
+        "id" : $util.dynamodb.toDynamoDBJson($util.autoId()),
     },
     "attributeValues" : {
         #set( $createDate = $util.time.nowISO8601()  )
-        "createdOn" : { "S" : "${createDate}" }
+        "pollId": $util.dynamodb.toDynamoDBJson($ctx.args.pollId),
+        "createdOn" : $util.dynamodb.toDynamoDBJson("${createDate}")
     }
 }
