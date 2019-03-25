@@ -39,7 +39,7 @@ type Poll implements Node {
   id: ID!
   question: String!
   isOpen: Boolean!
-  createdOn: AWSDateTime
+  createdOn(format: String): String
   lastUpdated: AWSDateTime
   totalVotes: Int
   options: [PollOption]

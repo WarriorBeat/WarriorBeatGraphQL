@@ -1,0 +1,11 @@
+{
+    "version": "2017-02-28",
+    #set( $datetime = $ctx.source.createdOn )
+    #if( $ctx.args.format )
+    	#set( $timeEpoch = $util.time.parseISO8601ToEpochMilliSeconds($datetime))
+        #set( $payload = $util.time.epochMilliSecondsToFormatted($timeEpoch, $ctx.args.format))
+    #else
+    	#set( $payload = $datetime )
+    #end
+    "payload": $util.toJson($payload)
+}

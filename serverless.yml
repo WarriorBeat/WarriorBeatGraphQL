@@ -68,6 +68,7 @@ custom:
     dataSources:
       - ${file(schema/data/LambdaResolver.yml)}
       - ${file(schema/data/polls.yml)}
+      - ${file(schema/data/none.yml)}
   # END AppSync ===================
 
 resources:
