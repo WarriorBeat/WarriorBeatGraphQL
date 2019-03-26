@@ -1,0 +1,16 @@
+#set( $optId = $ctx.stash.id )
+## Args for incrementAttributeById function
+$util.qr($ctx.stash.put("incId", $ctx.prev.result.pollId))
+$util.qr($ctx.stash.put("incAttr", "totalVotes"))
+{
+    "version" : "2017-02-28",
+    "operation" : "PutItem",
+    "key" : {
+        "optionId" : $util.dynamodb.toDynamoDBJson($optId),
+        "id" : $util.dynamodb.toDynamoDBJson($util.autoId()),
+    },
+    "attributeValues" : {
+        #set( $createDate = $util.time.nowISO8601()  )
+        "createdOn" : $util.dynamodb.toDynamoDBJson("${createDate}")
+    }
+}

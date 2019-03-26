@@ -1,13 +1,3 @@
-{
-    "version" : "2017-02-28",
-    "operation" : "PutItem",
-    "key" : {
-        "optionId" : $util.dynamodb.toDynamoDBJson($ctx.args.optionId),
-        "id" : $util.dynamodb.toDynamoDBJson($util.autoId()),
-    },
-    "attributeValues" : {
-        #set( $createDate = $util.time.nowISO8601()  )
-        "pollId": $util.dynamodb.toDynamoDBJson($ctx.args.pollId),
-        "createdOn" : $util.dynamodb.toDynamoDBJson("${createDate}")
-    }
-}
+$util.qr($ctx.stash.put("id", $ctx.args.optionId))
+$util.qr($ctx.stash.put("returnFirstIndex", true))
+{}

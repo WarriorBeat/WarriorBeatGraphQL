@@ -64,6 +64,8 @@ custom:
       - schema/polls.graphql
     mappingTemplates:
       - ${file(mapping-templates/polls/map.yml)}
+    functionConfigurations:
+      - ${file(mapping-templates/functions/polls.yml)}
     serviceRole: 'AppSyncServiceRole'
     dataSources:
       - ${file(schema/data/LambdaResolver.yml)}
@@ -195,8 +197,6 @@ resources:
             AttributeType: S
           - AttributeName: optionId
             AttributeType: S
-          - AttributeName: pollId
-            AttributeType: S
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
@@ -205,15 +205,6 @@ resources:
           - IndexName: optionId-index
             KeySchema:
               - AttributeName: optionId
-                KeyType: HASH
-            Projection:
-              ProjectionType: ALL
-            ProvisionedThroughput:
-              ReadCapacityUnits: 1
-              WriteCapacityUnits: 1
-          - IndexName: pollId-index
-            KeySchema:
-              - AttributeName: pollId
                 KeyType: HASH
             Projection:
               ProjectionType: ALL

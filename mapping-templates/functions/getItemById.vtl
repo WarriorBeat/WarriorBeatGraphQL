@@ -1,0 +1,13 @@
+{
+    "version": "2017-02-28",
+    "operation": "Query",
+    "query": {
+        "expression": "id = :id",
+        "expressionValues": {
+            ":id": {
+                "S": "$ctx.stash.id"
+            }
+        }
+    },
+    "limit": #if($context.arguments.limit) $context.arguments.limit #else 1 #end,
+}

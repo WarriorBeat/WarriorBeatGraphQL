@@ -1,5 +1,5 @@
 type Mutation {
-  pollAddVote(pollId: ID!, optionId: ID!, createdOn: String): PollVote
+  pollAddVote(optionId: ID!): Poll
 }
 
 type Query {
@@ -9,7 +9,7 @@ type Query {
 }
 
 type Subscription {
-  pollAddedVote: PollVote @aws_subscribe(mutations: ["pollAddVote"])
+  pollAddedVote: Poll @aws_subscribe(mutations: ["pollAddVote"])
 }
 
 type PollVote {

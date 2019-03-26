@@ -1,0 +1,14 @@
+- dataSource: PollOptions
+  name: 'GetPollOptionById'
+  request: 'functions/getItemById.vtl'
+  response: 'common-list-response.vtl'
+
+- dataSource: PollVotes
+  name: 'AddPollVoteByOption'
+  request: 'functions/addPollVoteByOption.vtl'
+  response: 'common-response.vtl'
+
+- dataSource: Polls
+  name: 'IncrementPollTotalVotes'
+  request: 'functions/incrementAttributeById.vtl'
+  response: 'common-response.vtl'

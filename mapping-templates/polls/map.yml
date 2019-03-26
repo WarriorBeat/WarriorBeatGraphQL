@@ -31,20 +31,18 @@
   response: 'common-response.vtl'
 
 - dataSource: PollVotes
-  type: Poll
-  field: totalVotes
-  request: 'polls/poll_totalVotes-request.vtl'
-  response: 'list-size-response.vtl'
-
-- dataSource: PollVotes
   type: PollOption
   field: votes
   request: 'polls/pollOption_votes-request.vtl'
   response: 'list-size-response.vtl'
 
 # MUTATIONS
-- dataSource: PollVotes
-  type: Mutation
+- type: Mutation
   field: pollAddVote
   request: 'polls/pollAddVote-request.vtl'
   response: 'common-response.vtl'
+  kind: PIPELINE
+  functions:
+    - GetPollOptionById
+    - AddPollVoteByOption
+    - IncrementPollTotalVotes
