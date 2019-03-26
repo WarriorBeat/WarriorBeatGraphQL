@@ -79,6 +79,8 @@ resources:
   - ${file(resources/appsync-roles.yml)}
   # DynamoDB: Polls
   - ${file(resources/tables/polls.yml)}
+  # Cognito Pool
+  - ${file(resources/cognito-pool.yml)}
 
 package:
   exclude:
