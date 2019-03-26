@@ -12,19 +12,10 @@ type Subscription {
   pollAddedVote: Poll @aws_subscribe(mutations: ["pollAddVote"])
 }
 
-type PollVote {
-  id: ID!
-  pollId: ID!
-  optionId: ID!
-  createdOn: AWSDateTime
-}
-
-type PollVoteConnection {
-  items: [PollVote!]!
-  nextToken: String
-}
-
 type PollOption {
+  """
+  Poll Option Resource
+  """
   id: ID!
   pollId: ID!
   text: String!
@@ -32,21 +23,30 @@ type PollOption {
 }
 
 type PollOptionConnection {
+  """
+  Poll Option Paginiation
+  """
   items: [PollOption!]!
   nextToken: String
 }
 
 type Poll implements Node {
+  """
+  Poll Resource
+  """
   id: ID!
   question: String!
   isOpen: Boolean!
   createdOn(format: String): String
-  lastUpdated: AWSDateTime
+  lastUpdated: String
   totalVotes: Int
-  options: [PollOption]
+  options: [PollOption!]
 }
 
 type PollConnection {
+  """
+  Poll Pagination
+  """
   items: [Poll!]!
   nextToken: String
 }

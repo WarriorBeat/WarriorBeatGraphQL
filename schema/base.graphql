@@ -1,4 +1,7 @@
 interface Node {
+  """
+  Node Interface
+  """
   id: ID!
 }
 
