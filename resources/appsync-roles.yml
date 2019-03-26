@@ -1,0 +1,69 @@
+Resources:
+  AppSyncHandler:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: 'Lambda-AppSyncHandler'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: 'Allow'
+            Principal:
+              Service:
+                - 'lambda.amazonaws.com'
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: 'LambdaRole-Policy'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: 'Allow'
+                Action:
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                Resource:
+                  - 'arn:aws:logs:us-east-1:881433986874:log-group:/aws/lambda/warriorbeat-graphql-dev-lambda_handler:*'
+                  - 'arn:aws:logs:us-east-1:881433986874:log-group:/aws/lambda/warriorbeat-graphql-dev-lambda_handler:*:*'
+        - PolicyName: 'LambdaRole-DynamoDB-Policy'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: 'Allow'
+                Action:
+                  - 'dynamodb:Query'
+                  - 'dynamodb:Scan'
+                  - 'dynamodb:UpdateItem'
+                  - 'dynamodb:DeleteItem'
+                  - 'dynamodb:PutItem'
+                  - 'dynamodb:GetItem'
+                Resource:
+                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/Polls'
+                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/Polls/*'
+                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions'
+                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions/*'
+                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes'
+                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes/*'
+  AppSyncServiceRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: 'Lambda-AppSyncServiceRole'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: 'Allow'
+            Principal:
+              Service:
+                - 'appsync.amazonaws.com'
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: 'Lambda-AppSyncServiceRole-Policy'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: 'Allow'
+                Action:
+                  - 'lambda:invokeFunction'
+                Resource:
+                  - 'arn:aws:lambda:${self:provider.region}:*:function:warriorbeat-graphql-dev-lambda_handler'
+                  - 'arn:aws:lambda:${self:provider.region}:*:function:warriorbeat-graphql-dev-lambda_handler:*'
