@@ -12,28 +12,28 @@ type Subscription {
   pollAddedVote: Poll @aws_subscribe(mutations: ["pollAddVote"])
 }
 
+"""
+Poll Option Resource
+"""
 type PollOption {
-  """
-  Poll Option Resource
-  """
   id: ID!
   pollId: ID!
   text: String!
   votes: Int
 }
 
+"""
+Poll Option Paginiation
+"""
 type PollOptionConnection {
-  """
-  Poll Option Paginiation
-  """
   items: [PollOption!]!
   nextToken: String
 }
 
+"""
+Poll Resource
+"""
 type Poll implements Node {
-  """
-  Poll Resource
-  """
   id: ID!
   question: String!
   isOpen: Boolean!
@@ -43,10 +43,10 @@ type Poll implements Node {
   options: [PollOption!]
 }
 
+"""
+Poll Pagination
+"""
 type PollConnection {
-  """
-  Poll Pagination
-  """
   items: [Poll!]!
   nextToken: String
 }

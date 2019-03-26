@@ -1,4 +1,4 @@
 projects:
   WarriorBeatGraphQL:
-    schemaPath: schema/base.graphql
+    schemaPath: 'schema.graphql'
     includes: ['schema/**/*.graphql']

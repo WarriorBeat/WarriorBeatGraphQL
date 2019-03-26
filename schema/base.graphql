@@ -1,7 +1,7 @@
+"""
+Node Interface
+"""
 interface Node {
-  """
-  Node Interface
-  """
   id: ID!
 }
 
