@@ -1,0 +1,14 @@
+"""
+Media Resource Post Type
+"""
+type Media implements Node & Post {
+  id: ID!
+  createdOn(format: String): String
+  lastUpdated: String
+  author: Author
+  credits: String
+  caption: String
+  title: String
+  source: AWSURL
+  url: AWSURL
+}

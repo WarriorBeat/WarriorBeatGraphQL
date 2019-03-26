@@ -1,0 +1,23 @@
+"""
+User Resource
+"""
+type User implements Node {
+  id: ID!
+}
+
+"""
+Author Resource
+"""
+type Author implements Node {
+  id: ID!
+  user: User
+}
+
+"""
+Interface for Post Resources
+"""
+interface Post {
+  author: Author
+  createdOn(format: String): String
+  lastUpdated: String
+}

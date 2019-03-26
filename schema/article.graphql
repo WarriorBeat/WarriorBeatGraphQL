@@ -1,0 +1,16 @@
+"""
+Article Resource Post Type
+"""
+type Article implements Node & Post {
+  id: ID!
+  createdOn(format: String): String
+  lastUpdated: String
+  author: Author
+  title: String
+  version: Int
+  contributors: [Author!]
+  categories: [Category!]
+  content: String!
+  coverImage: Media!
+  media: [Media!]
+}
