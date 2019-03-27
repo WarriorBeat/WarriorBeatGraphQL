@@ -1,17 +1,17 @@
 # QUERIES
-- dataSource: Polls
+- dataSource: None
   type: Poll
   field: createdOn
   request: 'posts/post_createdOn-request.vtl'
   response: 'common-response.vtl'
 
-- dataSource: Articles
+- dataSource: None
   type: Article
   field: createdOn
   request: 'posts/post_createdOn-request.vtl'
   response: 'common-response.vtl'
 
-- dataSource: Media
+- dataSource: None
   type: Media
   field: createdOn
   request: 'posts/post_createdOn-request.vtl'
