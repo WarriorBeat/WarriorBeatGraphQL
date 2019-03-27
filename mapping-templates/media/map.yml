@@ -4,3 +4,9 @@
   field: mediaGet
   request: 'dynamo/getItemById.vtl'
   response: 'common-response.vtl'
+
+- dataSource: Authors
+  type: Media
+  field: author
+  request: 'media/media_author-request.vtl'
+  response: 'common-response.vtl'

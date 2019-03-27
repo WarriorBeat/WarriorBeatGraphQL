@@ -4,3 +4,15 @@
   field: articleGet
   request: 'dynamo/getItemById.vtl'
   response: 'common-response.vtl'
+
+- dataSource: Authors
+  type: Article
+  field: author
+  request: 'articles/article_author-request.vtl'
+  response: 'common-response.vtl'
+
+- dataSource: Media
+  type: Article
+  field: coverImage
+  request: 'articles/article_coverImage-request.vtl'
+  response: 'common-response.vtl'
