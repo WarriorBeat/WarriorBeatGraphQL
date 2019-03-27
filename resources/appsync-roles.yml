@@ -37,12 +37,13 @@ Resources:
                   - 'dynamodb:PutItem'
                   - 'dynamodb:GetItem'
                 Resource:
-                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/Polls'
-                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/Polls/*'
-                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions'
-                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions/*'
-                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes'
-                  - 'arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes/*'
+                  - ${cf:${self:custom.stack}.PollTableArn}
+                  - ${cf:${self:custom.stack}.PollTableArn}/*
+                  - ${cf:${self:custom.stack}.PollOptionsTableArn}
+                  - ${cf:${self:custom.stack}.PollOptionsTableArn}/*
+                  - ${cf:${self:custom.stack}.PollOptionsTableArn}
+                  - ${cf:${self:custom.stack}.PollOptionsTableArn}/*
+
   AppSyncServiceRole:
     Type: 'AWS::IAM::Role'
     Properties:

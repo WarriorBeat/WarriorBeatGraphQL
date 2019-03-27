@@ -1,51 +1,51 @@
 - type: AMAZON_DYNAMODB
   name: Polls
-  description: "Polls Table"
+  description: 'Polls Table'
   config:
-    tableName: "Polls"
+    tableName: { Ref: PollTable }
     iamRoleStatements:
-      - Effect: "Allow"
+      - Effect: 'Allow'
         Action:
-          - "dynamodb:Query"
-          - "dynamodb:Scan"
-          - "dynamodb:UpdateItem"
-          - "dynamodb:DeleteItem"
-          - "dynamodb:PutItem"
-          - "dynamodb:GetItem"
+          - 'dynamodb:Query'
+          - 'dynamodb:Scan'
+          - 'dynamodb:UpdateItem'
+          - 'dynamodb:DeleteItem'
+          - 'dynamodb:PutItem'
+          - 'dynamodb:GetItem'
         Resource:
-          - "arn:aws:dynamodb:${self:provider.region}:*:table/Polls"
-          - "arn:aws:dynamodb:${self:provider.region}:*:table/Polls/*"
+          - ${cf:${self:custom.stack}.PollTableArn}
+          - ${cf:${self:custom.stack}.PollTableArn}/*
 - type: AMAZON_DYNAMODB
   name: PollOptions
-  description: "Poll Options Table"
+  description: 'Poll Options Table'
   config:
-    tableName: "PollOptions"
+    tableName: { Ref: PollOptionsTable }
     iamRoleStatements:
-      - Effect: "Allow"
+      - Effect: 'Allow'
         Action:
-          - "dynamodb:Query"
-          - "dynamodb:Scan"
-          - "dynamodb:UpdateItem"
-          - "dynamodb:DeleteItem"
-          - "dynamodb:PutItem"
-          - "dynamodb:GetItem"
+          - 'dynamodb:Query'
+          - 'dynamodb:Scan'
+          - 'dynamodb:UpdateItem'
+          - 'dynamodb:DeleteItem'
+          - 'dynamodb:PutItem'
+          - 'dynamodb:GetItem'
         Resource:
-          - "arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions"
-          - "arn:aws:dynamodb:${self:provider.region}:*:table/PollOptions/*"
+          - ${cf:${self:custom.stack}.PollOptionsTableArn}
+          - ${cf:${self:custom.stack}.PollOptionsTableArn}/*
 - type: AMAZON_DYNAMODB
   name: PollVotes
-  description: "Poll Votes Table"
+  description: 'Poll Votes Table'
   config:
-    tableName: "PollVotes"
+    tableName: { Ref: PollVotesTable }
     iamRoleStatements:
-      - Effect: "Allow"
+      - Effect: 'Allow'
         Action:
-          - "dynamodb:Query"
-          - "dynamodb:Scan"
-          - "dynamodb:UpdateItem"
-          - "dynamodb:DeleteItem"
-          - "dynamodb:PutItem"
-          - "dynamodb:GetItem"
+          - 'dynamodb:Query'
+          - 'dynamodb:Scan'
+          - 'dynamodb:UpdateItem'
+          - 'dynamodb:DeleteItem'
+          - 'dynamodb:PutItem'
+          - 'dynamodb:GetItem'
         Resource:
-          - "arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes"
-          - "arn:aws:dynamodb:${self:provider.region}:*:table/PollVotes/*"
+          - ${cf:${self:custom.stack}.PollVotesTableArn}
+          - ${cf:${self:custom.stack}.PollVotesTableArn}/*

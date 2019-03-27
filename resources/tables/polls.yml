@@ -9,9 +9,9 @@ Resources:
         - AttributeName: id
           AttributeType: S
       ProvisionedThroughput:
-        ReadCapacityUnits: 1
-        WriteCapacityUnits: 1
-      TableName: 'Polls'
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
+      TableName: Polls-${self:custom.stage}
   PollOptionsTable:
     Type: 'AWS::DynamoDB::Table'
     Properties:
@@ -26,9 +26,9 @@ Resources:
         - AttributeName: pollId
           AttributeType: S
       ProvisionedThroughput:
-        ReadCapacityUnits: 1
-        WriteCapacityUnits: 1
-      TableName: 'PollOptions'
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
+      TableName: PollOptions-${self:custom.stage}
       GlobalSecondaryIndexes:
         - IndexName: pollId-index
           KeySchema:
@@ -37,8 +37,8 @@ Resources:
           Projection:
             ProjectionType: ALL
           ProvisionedThroughput:
-            ReadCapacityUnits: 1
-            WriteCapacityUnits: 1
+            ReadCapacityUnits: ${self:custom.tableThroughput}
+            WriteCapacityUnits: ${self:custom.tableThroughput}
   PollVotesTable:
     Type: 'AWS::DynamoDB::Table'
     Properties:
@@ -53,9 +53,9 @@ Resources:
         - AttributeName: optionId
           AttributeType: S
       ProvisionedThroughput:
-        ReadCapacityUnits: 1
-        WriteCapacityUnits: 1
-      TableName: 'PollVotes'
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
+      TableName: PollVotes-${self:custom.stage}
       GlobalSecondaryIndexes:
         - IndexName: optionId-index
           KeySchema:
@@ -64,5 +64,15 @@ Resources:
           Projection:
             ProjectionType: ALL
           ProvisionedThroughput:
-            ReadCapacityUnits: 1
-            WriteCapacityUnits: 1
+            ReadCapacityUnits: ${self:custom.tableThroughput}
+            WriteCapacityUnits: ${self:custom.tableThroughput}
+
+Outputs:
+  PollTableArn:
+    Value: { Fn::GetAtt: [PollTable, Arn] }
+
+  PollOptionsTableArn:
+    Value: { Fn::GetAtt: [PollOptionsTable, Arn] }
+
+  PollVotesTableArn:
+    Value: { Fn::GetAtt: [PollVotesTable, Arn] }

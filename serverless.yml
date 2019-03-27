@@ -15,6 +15,12 @@ plugins:
   - aws-amplify-serverless-plugin
 
 custom:
+  stage: ${opt:stage, self:provider.stage}
+  stack: warriorbeat-graphql-${self:custom.stage}
+  tableThroughputs:
+    prod: 5
+    default: 1
+  tableThroughput: ${self:custom.tableThroughputs.${self:custom.stage}, self:custom.tableThroughputs.default}
   accountId: '881433986874'
   # Python Runtime
   pythonRequirements:
@@ -41,11 +47,11 @@ custom:
     seed:
       test:
         sources:
-          - table: Polls
+          - table: { Ref: PollTable }
             sources: [seed-data/polls.json]
-          - table: PollOptions
+          - table: { Ref: PollOptionsTable }
             sources: [seed-data/poll_options.json]
-          - table: PollVotes
+          - table: { Ref: PollVotesTable }
             sources: [seed-data/poll_votes.json]
   # END SLS DEV ENV ===================
 
@@ -57,7 +63,7 @@ custom:
 
   # AppSync ===================
   appSync:
-    name: WarriorBeatAppSync
+    name: WarriorBeatAppSync-${self:custom.stage}
     authenticationType: API_KEY
     schema:
       - schema/base.graphql
