@@ -1,5 +1,5 @@
 type Query {
-  articleGet(id: ID!): Media
+  articleGet(id: ID!): Article
 }
 
 """

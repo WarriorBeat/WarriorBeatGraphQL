@@ -111,6 +111,7 @@ package:
     - .amplify/**
     - .seed-data/**
     - node_modules/**
+    - docs/**
 
 functions:
   lambda_handler:
