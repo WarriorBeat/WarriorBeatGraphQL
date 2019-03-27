@@ -37,12 +37,25 @@ Resources:
                   - 'dynamodb:PutItem'
                   - 'dynamodb:GetItem'
                 Resource:
+                  # Poll Table Resources
                   - ${cf:${self:custom.stack}.PollTableArn}
                   - ${cf:${self:custom.stack}.PollTableArn}/*
                   - ${cf:${self:custom.stack}.PollOptionsTableArn}
                   - ${cf:${self:custom.stack}.PollOptionsTableArn}/*
                   - ${cf:${self:custom.stack}.PollOptionsTableArn}
                   - ${cf:${self:custom.stack}.PollOptionsTableArn}/*
+                  # Users Table
+                  - ${cf:${self:custom.stack}.UsersTableArn}
+                  - ${cf:${self:custom.stack}.UsersTableArn}/*
+                  # Articles Table
+                  - ${cf:${self:custom.stack}.ArticlesTableArn}
+                  - ${cf:${self:custom.stack}.ArticlesTableArn}/*
+                  # Authors Table
+                  - ${cf:${self:custom.stack}.AuthorsTableArn}
+                  - ${cf:${self:custom.stack}.AuthorsTableArn}/*
+                  # Media Table
+                  - ${cf:${self:custom.stack}.MediaTableArn}
+                  - ${cf:${self:custom.stack}.MediaTableArn}/*
 
   AppSyncServiceRole:
     Type: 'AWS::IAM::Role'

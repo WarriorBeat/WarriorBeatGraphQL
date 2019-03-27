@@ -83,8 +83,12 @@ custom:
 resources:
   # AppSync Service/Handler Roles
   - ${file(resources/appsync-roles.yml)}
-  # DynamoDB: Polls
+  # DynamoDB Tables
   - ${file(resources/tables/polls.yml)}
+  - ${file(resources/tables/authors.yml)}
+  - ${file(resources/tables/media.yml)}
+  - ${file(resources/tables/articles.yml)}
+  - ${file(resources/tables/users.yml)}
   # Cognito Pool
   - ${file(resources/cognito-pool.yml)}
 

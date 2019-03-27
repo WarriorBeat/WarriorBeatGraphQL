@@ -1,0 +1,17 @@
+- type: AMAZON_DYNAMODB
+  name: Media
+  description: 'Media Table'
+  config:
+    tableName: { Ref: MediaTable }
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - 'dynamodb:Query'
+          - 'dynamodb:Scan'
+          - 'dynamodb:UpdateItem'
+          - 'dynamodb:DeleteItem'
+          - 'dynamodb:PutItem'
+          - 'dynamodb:GetItem'
+        Resource:
+          - ${cf:${self:custom.stack}.MediaTableArn}
+          - ${cf:${self:custom.stack}.MediaTableArn}/*

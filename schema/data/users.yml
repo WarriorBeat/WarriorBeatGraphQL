@@ -1,0 +1,17 @@
+- type: AMAZON_DYNAMODB
+  name: Users
+  description: 'Users Table'
+  config:
+    tableName: { Ref: UsersTable }
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - 'dynamodb:Query'
+          - 'dynamodb:Scan'
+          - 'dynamodb:UpdateItem'
+          - 'dynamodb:DeleteItem'
+          - 'dynamodb:PutItem'
+          - 'dynamodb:GetItem'
+        Resource:
+          - ${cf:${self:custom.stack}.UsersTableArn}
+          - ${cf:${self:custom.stack}.UsersTableArn}/*

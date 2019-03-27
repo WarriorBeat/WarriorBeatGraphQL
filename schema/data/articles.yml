@@ -1,0 +1,17 @@
+- type: AMAZON_DYNAMODB
+  name: Articles
+  description: 'Articles Table'
+  config:
+    tableName: { Ref: ArticlesTable }
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - 'dynamodb:Query'
+          - 'dynamodb:Scan'
+          - 'dynamodb:UpdateItem'
+          - 'dynamodb:DeleteItem'
+          - 'dynamodb:PutItem'
+          - 'dynamodb:GetItem'
+        Resource:
+          - ${cf:${self:custom.stack}.ArticlesTableArn}
+          - ${cf:${self:custom.stack}.ArticlesTableArn}/*

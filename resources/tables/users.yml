@@ -1,0 +1,18 @@
+Resources:
+  UsersTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      ProvisionedThroughput:
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
+      TableName: Users-${self:custom.stage}
+
+Outputs:
+  UsersTableArn:
+    Value: { Fn::GetAtt: [UsersTable, Arn] }
