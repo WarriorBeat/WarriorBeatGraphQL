@@ -1,0 +1,18 @@
+# QUERIES
+- dataSource: Polls
+  type: Poll
+  field: createdOn
+  request: 'posts/post_createdOn-request.vtl'
+  response: 'common-response.vtl'
+
+- dataSource: Articles
+  type: Article
+  field: createdOn
+  request: 'posts/post_createdOn-request.vtl'
+  response: 'common-response.vtl'
+
+- dataSource: Media
+  type: Media
+  field: createdOn
+  request: 'posts/post_createdOn-request.vtl'
+  response: 'common-response.vtl'

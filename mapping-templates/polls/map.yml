@@ -24,12 +24,6 @@
   request: 'polls/poll_options-request.vtl'
   response: 'common-list-response.vtl'
 
-- dataSource: None
-  type: Poll
-  field: createdOn
-  request: 'polls/poll_createdOn-request.vtl'
-  response: 'common-response.vtl'
-
 - dataSource: PollVotes
   type: PollOption
   field: votes

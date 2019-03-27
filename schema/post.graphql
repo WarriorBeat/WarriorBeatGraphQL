@@ -21,7 +21,6 @@ type Author implements Node {
   posts: [Article!]
   title: String!
   bio: String
-  postCount: Int
   staffYear: Int
   gradeYear: Int
 }

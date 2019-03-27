@@ -1,0 +1,14 @@
+{
+    "version": "2017-02-28",
+    "operation": "Query",
+    "index": "authorId-index",
+    "query": {
+        "expression": "authorId = :authorId",
+        "expressionValues": {
+            ":authorId": {
+                "S": "$context.source.id"
+            }
+        }
+    }
+}
+

@@ -68,15 +68,28 @@ custom:
     schema:
       - schema/base.graphql
       - schema/polls.graphql
+      - schema/article.graphql
+      - schema/category.graphql
+      - schema/media.graphql
+      - schema/post.graphql
     mappingTemplates:
       - ${file(mapping-templates/polls/map.yml)}
+      - ${file(mapping-templates/articles/map.yml)}
+      - ${file(mapping-templates/authors/map.yml)}
+      - ${file(mapping-templates/media/map.yml)}
+      - ${file(mapping-templates/posts/map.yml)}
+      - ${file(mapping-templates/users/map.yml)}
     functionConfigurations:
       - ${file(mapping-templates/functions/polls.yml)}
     serviceRole: 'AppSyncServiceRole'
     dataSources:
       - ${file(schema/data/LambdaResolver.yml)}
-      - ${file(schema/data/polls.yml)}
       - ${file(schema/data/none.yml)}
+      - ${file(schema/data/polls.yml)}
+      - ${file(schema/data/articles.yml)}
+      - ${file(schema/data/authors.yml)}
+      - ${file(schema/data/media.yml)}
+      - ${file(schema/data/users.yml)}
 
   # END AppSync ===================
 

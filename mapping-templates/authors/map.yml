@@ -1,0 +1,24 @@
+# QUERIES
+- dataSource: Authors
+  type: Query
+  field: authorGet
+  request: 'dynamo/getItemById.vtl'
+  response: 'common-response.vtl'
+
+- dataSource: Media
+  type: Author
+  field: profileImage
+  request: 'authors/author_profileImage-request.vtl'
+  response: 'common-response.vtl'
+
+- dataSource: Articles
+  type: Author
+  field: posts
+  request: 'authors/author_posts-request.vtl'
+  response: 'common-list-response.vtl'
+
+- dataSource: Users
+  type: Author
+  field: user
+  request: 'authors/author_user-request.vtl'
+  response: 'common-response.vtl'

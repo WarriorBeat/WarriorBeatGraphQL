@@ -1,0 +1,6 @@
+# QUERIES
+- dataSource: Users
+  type: Query
+  field: userGet
+  request: 'dynamo/getItemById.vtl'
+  response: 'common-response.vtl'

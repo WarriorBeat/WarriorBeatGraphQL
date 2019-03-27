@@ -1,0 +1,6 @@
+# QUERIES
+- dataSource: Media
+  type: Query
+  field: mediaGet
+  request: 'dynamo/getItemById.vtl'
+  response: 'common-response.vtl'
