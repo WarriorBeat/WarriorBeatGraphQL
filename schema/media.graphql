@@ -1,3 +1,7 @@
+type Query {
+  mediaGet(id: ID!): Media
+}
+
 """
 Media Resource Post Type
 """

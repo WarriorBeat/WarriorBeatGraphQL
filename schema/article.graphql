@@ -1,3 +1,7 @@
+type Query {
+  articleGet(id: ID!): Media
+}
+
 """
 Article Resource Post Type
 """

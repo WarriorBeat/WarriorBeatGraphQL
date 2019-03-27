@@ -1,3 +1,9 @@
+type Query {
+  userGet(id: ID!): User
+  authorGet(id: ID!): Author
+  postGet(id: ID!): Post
+}
+
 """
 User Resource
 """
@@ -11,6 +17,13 @@ Author Resource
 type Author implements Node {
   id: ID!
   user: User
+  profileImage: Media
+  posts: [Article!]
+  title: String!
+  bio: String
+  postCount: Int
+  staffYear: Int
+  gradeYear: Int
 }
 
 """
