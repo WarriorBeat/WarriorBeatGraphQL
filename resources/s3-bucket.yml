@@ -1,0 +1,25 @@
+Resources:
+  MediaBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: ${self:service}-media-${self:custom.stage}
+      CorsConfiguration:
+        CorsRules:
+          - AllowedOrigins:
+              - '*'
+            AllowedHeaders:
+              - '*'
+            AllowedMethods:
+              - GET
+              - PUT
+              - POST
+              - DELETE
+              - HEAD
+            MaxAge: 3000
+
+Outputs:
+  MediaBucketName:
+    Value:
+      Ref: MediaBucket
+  MediaBucketArn:
+    Value: { Fn::GetAtt: [MediaBucket, Arn] }

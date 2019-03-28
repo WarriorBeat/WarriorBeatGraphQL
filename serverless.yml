@@ -104,6 +104,8 @@ resources:
   - ${file(resources/tables/users.yml)}
   # Cognito Pool
   - ${file(resources/cognito-pool.yml)}
+  # S3 Bucket
+  - ${file(resources/s3-bucket.yml)}
 
 package:
   exclude:
