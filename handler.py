@@ -51,11 +51,10 @@ def handle_media_create(*args, **kwargs):
         'key': '',
         'url': ''
     }
-    key = f"{media['authorId']}_{media['id']}"
-    media['url'], key_ext = media_s3.upload_from_url(media['source'], key=key)
-    media['key'] = key + key_ext
+    base_key = f"{media['authorId']}_{media['id']}"
+    media['url'], media['key'] = media_s3.upload_from_url(
+        media['source'], key=base_key)
     media_table.add_item(media)
-    print(media)
     return media
 
 
@@ -72,7 +71,6 @@ def lambda_handler(event, context):
 
     field = event['field']
     args = event['args']
-    print("Environment:", os.environ)
 
     resolve = resolvers[field]
     return resolve(**args)

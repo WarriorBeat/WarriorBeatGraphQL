@@ -112,7 +112,7 @@ class S3Storage:
         """generates url where the image is hosted"""
         aws_root = "https://s3.amazonaws.com"
         url = f"{aws_root}/{self.bucket['bucket_name']}/{key}"
-        return url
+        return url, key
 
     def upload(self, path, key=None):
         """uploads a file to the s3 bucket"""
@@ -137,7 +137,7 @@ class S3Storage:
         file_ext = self.FILE_EXTENSIONS[content_type]
         img_obj = img_stream.raw
         img_data = img_obj.read()
-        return (self.upload_obj((img_data, file_ext), **kwargs), file_ext)
+        return self.upload_obj((img_data, file_ext), **kwargs)
 
     def delete(self, keys):
         """deletes files from s3 bucket"""
