@@ -5,6 +5,12 @@
   request: 'dynamo/getItemById.vtl'
   response: 'common-response.vtl'
 
+- dataSource: Authors
+  type: Query
+  field: authorList
+  request: 'dynamo/paginate.vtl'
+  response: 'common-response.vtl'
+
 - dataSource: Media
   type: Author
   field: profileImage

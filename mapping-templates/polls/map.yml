@@ -8,7 +8,7 @@
 - dataSource: Polls
   type: Query
   field: pollList
-  request: 'polls/pollList-request.vtl'
+  request: 'dynamo/paginate.vtl'
   response: 'common-response.vtl'
 
 - dataSource: PollOptions

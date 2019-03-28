@@ -1,6 +1,7 @@
 type Query {
   userGet(id: ID!): User
   authorGet(id: ID!): Author
+  authorList(limit: Int, nextToken: String): AuthorConnection
   postGet(id: ID!): Post
 }
 
@@ -23,6 +24,14 @@ type Author implements Node {
   bio: String
   staffYear: Int
   gradeYear: Int
+}
+
+"""
+Author Resource Pagination
+"""
+type AuthorConnection {
+  items: [Author!]!
+  nextToken: String
 }
 
 """

@@ -1,5 +1,6 @@
 type Query {
   articleGet(id: ID!): Article
+  articleList(limit: Int, nextToken: String): ArticleConnection
 }
 
 """
@@ -17,4 +18,12 @@ type Article implements Node & Post {
   content: String!
   coverImage: Media!
   media: [Media!]
+}
+
+"""
+Article Resource Pagination
+"""
+type ArticleConnection {
+  items: [Article]
+  nextToken: String
 }
