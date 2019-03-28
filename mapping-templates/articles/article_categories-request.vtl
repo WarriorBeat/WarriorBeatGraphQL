@@ -1,0 +1,17 @@
+#set($ids = [])
+#foreach($item in ${ctx.source.categories})
+  #set($map = {})
+  $util.qr($map.put("id", $util.dynamodb.toString($item)))
+  $util.qr($ids.add($map))
+#end
+
+{
+    "version" : "2018-05-29",
+    "operation" : "BatchGetItem",
+    "tables" : {
+        "Categories-dev": {
+            "keys": $util.toJson($ids),
+            "consistentRead": true
+        }
+    }
+}

@@ -1,0 +1,13 @@
+# QUERIES
+- dataSource: Categories
+  type: Query
+  field: categoryGet
+  request: 'dynamo/getItemById.vtl'
+  response: 'common-response.vtl'
+
+# MUTATIONS
+- dataSource: Categories
+  type: Mutation
+  field: categoryCreate
+  request: 'categories/categoryCreate-request.vtl'
+  response: 'common-response.vtl'

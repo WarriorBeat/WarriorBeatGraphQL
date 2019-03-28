@@ -1,0 +1,4 @@
+#if($ctx.error)
+    $utils.appendError($ctx.error.message, $ctx.error.message)
+#end
+$utils.toJson($ctx.result.data.get("Categories-dev"))

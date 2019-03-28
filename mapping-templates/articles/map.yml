@@ -22,3 +22,9 @@
   field: coverImage
   request: 'articles/article_coverImage-request.vtl'
   response: 'common-response.vtl'
+
+- dataSource: Categories
+  type: Article
+  field: categories
+  request: 'articles/article_categories-request.vtl'
+  response: 'articles/article_categories-response.vtl'
