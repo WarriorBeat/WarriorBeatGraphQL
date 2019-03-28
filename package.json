@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "deploy": "sls deploy",
+    "deploy:handler": "yarn run deploy -f lambda_handler",
     "clean:sls": "sls requirements clean && sls requirements cleanCache && rm -rf .serverless",
     "clean": "yarn run clean:sls && rm -rf node_modules && yarn cache clean && yarn",
     "local": "sls offline start",
