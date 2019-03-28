@@ -5,8 +5,6 @@ Resources:
       KeySchema:
         - AttributeName: id
           KeyType: HASH
-        - AttributeName: authorId
-          KeyType: RANGE
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
