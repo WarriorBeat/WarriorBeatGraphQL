@@ -36,6 +36,7 @@ Resources:
                   - 'dynamodb:DeleteItem'
                   - 'dynamodb:PutItem'
                   - 'dynamodb:GetItem'
+                  - 'dynamodb:BatchGetItem'
                 Resource:
                   # Poll Table Resources
                   - ${cf:${self:custom.stack}.PollTableArn}
@@ -56,6 +57,9 @@ Resources:
                   # Media Table
                   - ${cf:${self:custom.stack}.MediaTableArn}
                   - ${cf:${self:custom.stack}.MediaTableArn}/*
+                  # Categories Table
+                  - ${cf:${self:custom.stack}.CategoriesTableArn}
+                  - ${cf:${self:custom.stack}.CategoriesTableArn}/*
         - PolicyName: 'LambdaRole-S3-Policy'
           PolicyDocument:
             Version: '2012-10-17'

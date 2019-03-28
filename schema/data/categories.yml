@@ -1,0 +1,18 @@
+- type: AMAZON_DYNAMODB
+  name: Categories
+  description: 'Categories Table'
+  config:
+    tableName: { Ref: CategoriesTable }
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - 'dynamodb:Query'
+          - 'dynamodb:Scan'
+          - 'dynamodb:UpdateItem'
+          - 'dynamodb:DeleteItem'
+          - 'dynamodb:PutItem'
+          - 'dynamodb:GetItem'
+          - 'dynamodb:BatchGetItem'
+        Resource:
+          - ${cf:${self:custom.stack}.CategoriesTableArn}
+          - ${cf:${self:custom.stack}.CategoriesTableArn}/*

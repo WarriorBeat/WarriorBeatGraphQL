@@ -82,6 +82,7 @@ custom:
       - ${file(mapping-templates/media/map.yml)}
       - ${file(mapping-templates/posts/map.yml)}
       - ${file(mapping-templates/users/map.yml)}
+      - ${file(mapping-templates/categories/map.yml)}
     functionConfigurations:
       - ${file(mapping-templates/functions/polls.yml)}
     serviceRole: 'AppSyncServiceRole'
@@ -93,6 +94,7 @@ custom:
       - ${file(schema/data/authors.yml)}
       - ${file(schema/data/media.yml)}
       - ${file(schema/data/users.yml)}
+      - ${file(schema/data/categories.yml)}
 
   # END AppSync ===================
 
@@ -105,6 +107,7 @@ resources:
   - ${file(resources/tables/media.yml)}
   - ${file(resources/tables/articles.yml)}
   - ${file(resources/tables/users.yml)}
+  - ${file(resources/tables/categories.yml)}
   # Cognito Pool
   - ${file(resources/cognito-pool.yml)}
   # S3 Bucket

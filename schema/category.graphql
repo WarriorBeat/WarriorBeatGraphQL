@@ -1,3 +1,11 @@
+type Query {
+  categoryGet(id: ID!): Category
+}
+
+type Mutation {
+  categoryCreate(name: String!): Category
+}
+
 """
 Category Resource
 """
