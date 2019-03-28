@@ -16,6 +16,21 @@ Resources:
               - DELETE
               - HEAD
             MaxAge: 3000
+      AccessControl: PublicRead
+
+  MediaBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: '*'
+            Action:
+              - 's3:GetObject'
+            Resource: ${cf:${self:custom.stack}.MediaBucketArn}/*
+      Bucket:
+        Ref: MediaBucket
 
 Outputs:
   MediaBucketName:
