@@ -17,7 +17,6 @@ type Media implements Node & Post {
   author: Author
   credits: String
   caption: String
-  title: String
   source: AWSURL
   url: AWSURL
 }
