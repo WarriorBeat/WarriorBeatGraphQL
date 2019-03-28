@@ -5,6 +5,9 @@ provider:
   runtime: python3.7
   stage: dev
   region: us-east-1
+  environment:
+    S3_MEDIA: { Ref: MediaBucket }
+    DB_MEDIA: { Ref: MediaTable }
 
 plugins:
   - serverless-python-requirements

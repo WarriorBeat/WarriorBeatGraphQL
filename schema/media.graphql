@@ -2,6 +2,11 @@ type Query {
   mediaGet(id: ID!): Media
 }
 
+type Mutation {
+  mediaCreate(media: MediaInput!): Media
+  mediaDelete(id: ID!): Media
+}
+
 """
 Media Resource Post Type
 """
@@ -15,4 +20,14 @@ type Media implements Node & Post {
   title: String
   source: AWSURL
   url: AWSURL
+}
+
+"""
+Media Resource Input
+"""
+input MediaInput {
+  authorId: ID!
+  credits: String
+  caption: String
+  source: AWSURL!
 }

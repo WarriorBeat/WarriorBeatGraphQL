@@ -10,3 +10,16 @@
   field: author
   request: 'media/media_author-request.vtl'
   response: 'common-response.vtl'
+
+# MUTATIONS
+- dataSource: LambdaResolver
+  type: Mutation
+  field: mediaCreate
+  request: 'media/mediaCreate-request.vtl'
+  response: 'common-response.vtl'
+
+- dataSource: LambdaResolver
+  type: Mutation
+  field: mediaDelete
+  request: 'media/mediaDelete-request.vtl'
+  response: 'common-response.vtl'
