@@ -52,8 +52,8 @@ def handle_media_create(*args, **kwargs):
         'url': ''
     }
     key = f"{media['authorId']}_{media['id']}"
-    media['url'], _ = media_s3.upload_from_url(media['source'], key=key)
-    media['key'] = key
+    media['url'], key_ext = media_s3.upload_from_url(media['source'], key=key)
+    media['key'] = key + key_ext
     media_table.add_item(media)
     print(media)
     return media
