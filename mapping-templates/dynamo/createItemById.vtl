@@ -4,7 +4,5 @@
     "key" : {
         "id" : $util.dynamodb.toDynamoDBJson($util.autoId()),
     },
-    "attributeValues" : {
-        "name" : $util.dynamodb.toDynamoDBJson($ctx.args.name)
-    }
+    "attributeValues" : $util.dynamodb.toMapValuesJson($util.defaultIfNull($ctx.args.input, $ctx.args))
 }

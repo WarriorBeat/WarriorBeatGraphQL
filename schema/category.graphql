@@ -3,7 +3,7 @@ type Query {
 }
 
 type Mutation {
-  categoryCreate(name: String!): Category
+  categoryCreate(input: CategoryInput!): Category
 }
 
 """
@@ -11,5 +11,12 @@ Category Resource
 """
 type Category implements Node {
   id: ID!
+  name: String!
+}
+
+"""
+Category Resource Input
+"""
+input CategoryInput {
   name: String!
 }

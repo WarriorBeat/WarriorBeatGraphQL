@@ -9,5 +9,5 @@
 - dataSource: Categories
   type: Mutation
   field: categoryCreate
-  request: 'categories/categoryCreate-request.vtl'
+  request: 'dynamo/createItemById.vtl'
   response: 'common-response.vtl'

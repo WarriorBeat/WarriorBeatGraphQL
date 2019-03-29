@@ -14,6 +14,14 @@ from datetime import datetime
 from data import DynamoDB, S3Storage
 
 
+def get_utc_now():
+    """returns UTC now with zulu suffix"""
+    utc_now = datetime.utcnow()
+    utc_zulu = utc_now.strftime(
+        '%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z'
+    return utc_zulu
+
+
 def handle_media_delete(*args, **kwargs):
     """
     Deletes file from S3 and DynamoDB
@@ -38,7 +46,7 @@ def handle_media_create(*args, **kwargs):
     """
     media_table = DynamoDB('media')
     media_s3 = S3Storage('media')
-    create_date = str(datetime.now().isoformat())
+    create_date = get_utc_now()
     input_args = kwargs.get("media")
     media = {
         'id': str(uuid.uuid4()),
