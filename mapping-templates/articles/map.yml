@@ -28,3 +28,10 @@
   field: categories
   request: 'articles/article_categories-request.vtl'
   response: 'articles/article_categories-response.vtl'
+
+# MUTATIONS
+- dataSource: Articles
+  type: Mutation
+  field: articleCreate
+  request: 'articles/createArticle-request.vtl'
+  response: 'common-response.vtl'

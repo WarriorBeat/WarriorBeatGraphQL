@@ -3,6 +3,10 @@ type Query {
   articleList(limit: Int, nextToken: String): ArticleConnection
 }
 
+type Mutation {
+  articleCreate(input: ArticleInput!): Article
+}
+
 """
 Article Resource Post Type
 """
@@ -18,6 +22,17 @@ type Article implements Node & Post {
   content: String!
   coverImage: Media!
   media: [Media!]
+}
+
+"""Article Resource Input"""
+input ArticleInput {
+  author: ID!
+  title: String
+  version: Int
+  categories: [ID!]
+  content: String!
+  coverImage: ID!
+  media: [ID!]
 }
 
 """
