@@ -9,5 +9,5 @@
 - dataSource: Users
   type: Mutation
   field: userCreate
-  request: 'dynamo/createItemById.vtl'
+  request: 'users/userCreate-request.vtl'
   response: 'common-response.vtl'
