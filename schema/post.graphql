@@ -22,14 +22,15 @@ Author Resource
 """
 type Author implements Node {
   id: ID!
-  user: User
+  user: User!
   name: String
   profileImage: Media
   posts: [Article!]
-  title: String!
+  title: String
   bio: String
   staffYear: Int
   gradeYear: Int
+  version: Int
 }
 
 """
@@ -44,9 +45,9 @@ type AuthorConnection {
 Author Resource Input
 """
 input AuthorInput {
-  user: ID!
-  name: String!
-  profileImage: ID!
+  user: ID
+  name: String
+  profileImage: ID
   posts: [ID!]
   title: String
   bio: String

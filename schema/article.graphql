@@ -5,6 +5,7 @@ type Query {
 
 type Mutation {
   articleCreate(input: ArticleInput!): Article
+  articleUpdate(id: ID!, expectedVersion: Int!, input: ArticleInput!): Article
 }
 
 """
@@ -19,20 +20,24 @@ type Article implements Node & Post {
   version: Int
   contributors: [Author!]
   categories: [Category!]
-  content: String!
-  coverImage: Media!
+  content: String
+  coverImage: Media
   media: [Media!]
 }
 
-"""Article Resource Input"""
+"""
+Article Resource Input
+"""
 input ArticleInput {
   author: ID!
   title: String
   version: Int
   categories: [ID!]
-  content: String!
-  coverImage: ID!
+  content: String
+  coverImage: ID
   media: [ID!]
+  createdOn: String
+  lastUpdated: String
 }
 
 """
