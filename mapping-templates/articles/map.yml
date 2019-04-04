@@ -35,3 +35,9 @@
   field: articleCreate
   request: 'articles/createArticle-request.vtl'
   response: 'common-response.vtl'
+
+- dataSource: Articles
+  type: Mutation
+  field: articleUpdate
+  request: 'dynamo/updateItemById.vtl'
+  response: 'common-response.vtl'

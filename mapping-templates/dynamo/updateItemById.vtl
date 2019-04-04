@@ -1,0 +1,86 @@
+{
+    "version" : "2017-02-28",
+    "operation" : "UpdateItem",
+    "key" : {
+        "id" : { "S" : "${ctx.args.id}" }
+    },
+
+    #set( $expNames  = {} )
+    #set( $expValues = {} )
+    #set( $expSet = {} )
+    #set( $expAdd = {} )
+    #set( $expRemove = [] )
+
+    ## Increment Version
+    $!{expAdd.put("version", ":one")}
+    $!{expValues.put(":one", { "N" : 1 })}
+
+    ## Iterate through each argument, skipping "id" and "expectedVersion"
+    #set( $inputSet = $util.defaultIfNull($ctx.args.input, $ctx.args) )
+    #foreach( $entry in $inputSet.entrySet() )
+        #if( $entry.key != "id" && $entry.key != "expectedVersion" )
+            #if( (!$entry.value) && ("$!{entry.value}" == "") )
+                ## Remove Attributes set to null
+                #set( $discard = ${expRemove.add("#${entry.key}")} )
+                $!{expNames.put("#${entry.key}", "$entry.key")}
+            #else
+                ## Set or update Attribute
+                $!{expSet.put("#${entry.key}", ":${entry.key}")}
+                $!{expNames.put("#${entry.key}", "$entry.key")}
+                $!{expValues.put(":${entry.key}", { "S" : "${entry.value}" })}
+            #end
+        #end
+    #end
+
+    ## Add items to set
+    #set( $expression = "" )
+    #if( !${expSet.isEmpty()} )
+        #set( $expression = "SET" )
+        #foreach( $entry in $expSet.entrySet() )
+            #set( $expression = "${expression} ${entry.key} = ${entry.value}" )
+            #if ( $foreach.hasNext )
+                #set( $expression = "${expression}," )
+            #end
+        #end
+    #end
+
+    ## Add items to Add
+    #if( !${expAdd.isEmpty()} )
+        #set( $expression = "${expression} ADD" )
+        #foreach( $entry in $expAdd.entrySet() )
+            #set( $expression = "${expression} ${entry.key} ${entry.value}" )
+            #if ( $foreach.hasNext )
+                #set( $expression = "${expression}," )
+            #end
+        #end
+    #end
+
+    ## Add Items to Remove
+    #if( !${expRemove.isEmpty()} )
+        #set( $expression = "${expression} REMOVE" )
+
+        #foreach( $entry in $expRemove )
+            #set( $expression = "${expression} ${entry}" )
+            #if ( $foreach.hasNext )
+                #set( $expression = "${expression}," )
+            #end
+        #end
+    #end
+
+    "update" : {
+        "expression" : "${expression}"
+        #if( !${expNames.isEmpty()} )
+            ,"expressionNames" : $utils.toJson($expNames)
+        #end
+        #if( !${expValues.isEmpty()} )
+            ,"expressionValues" : $utils.toJson($expValues)
+        #end
+    },
+
+    "condition" : {
+        "expression"       : "version = :expectedVersion",
+        "expressionValues" : {
+            ":expectedVersion" : { "N" : ${ctx.args.expectedVersion} }
+        }
+    }
+}

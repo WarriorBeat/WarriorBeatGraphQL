@@ -35,3 +35,9 @@
   field: authorCreate
   request: 'dynamo/createItemById.vtl'
   response: 'common-response.vtl'
+
+- dataSource: Authors
+  type: Mutation
+  field: authorUpdate
+  request: 'dynamo/updateItemById.vtl'
+  response: 'common-response.vtl'

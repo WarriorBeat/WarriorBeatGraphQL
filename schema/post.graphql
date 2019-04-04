@@ -8,6 +8,7 @@ type Query {
 type Mutation {
   userCreate: User
   authorCreate(input: AuthorInput!): Author
+  authorUpdate(id: ID!, expectedVersion: Int!, input: AuthorInput!): Author
 }
 
 """
