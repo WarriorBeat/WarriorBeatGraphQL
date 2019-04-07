@@ -29,6 +29,12 @@
   request: 'articles/article_categories-request.vtl'
   response: 'articles/article_categories-response.vtl'
 
+- dataSource: LambdaResolver
+  type: Query
+  field: articleGetByCategory
+  request: 'articles/articleGetByCategory-request.vtl'
+  response: 'common-response.vtl'
+
 # MUTATIONS
 - dataSource: Articles
   type: Mutation

@@ -8,6 +8,8 @@ provider:
   environment:
     S3_MEDIA: { Ref: MediaBucket }
     DB_MEDIA: { Ref: MediaTable }
+    DB_ARTICLE: { Ref: ArticlesTable }
+    DB_CATEGORY: { Ref: CategoriesTable }
 
 plugins:
   - serverless-python-requirements

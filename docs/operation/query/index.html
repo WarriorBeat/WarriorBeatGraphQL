@@ -92,6 +92,13 @@
       
         
       <li>
+        <a href="/WarriorBeatGraphQL/object/categoryconnection/" class="sidebar-link">
+          CategoryConnection
+        </a>
+      </li>
+      
+        
+      <li>
         <a href="/WarriorBeatGraphQL/object/media/" class="sidebar-link">
           Media
         </a>
@@ -485,6 +492,38 @@
   </div>
 </div>
 <div class="field-entry ">
+  <span id="categorylist" class="field-name connection-name anchored">categoryList (<code><a href="/WarriorBeatGraphQL/object/categoryconnection">CategoryConnection</a></code>)</span>
+  <div class="description-wrapper">
+     <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">limit</code></td>
+  <td>
+    <code><a href="/WarriorBeatGraphQL/scalar/int">Int</a></code>
+  </td>
+  <td>
+   </td>
+  </tr>
+  <tr>
+  <td><code class="anchored">nextToken</code></td>
+  <td>
+    <code><a href="/WarriorBeatGraphQL/scalar/string">String</a></code>
+  </td>
+  <td>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
   <span id="polllist" class="field-name connection-name anchored">pollList (<code><a href="/WarriorBeatGraphQL/object/pollconnection">PollConnection</a></code>)</span>
   <div class="description-wrapper">
      <table class="arguments">
@@ -604,6 +643,30 @@
   <tbody>
   <tr>
   <td><code class="anchored">id</code></td>
+  <td>
+    <code><a href="/WarriorBeatGraphQL/scalar/id">ID!</a></code>
+  </td>
+  <td>
+   </td>
+  </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="articlegetbycategory" class="field-name anchored">articleGetByCategory (<code><a href="/WarriorBeatGraphQL/object/article">[Article]</a></code>)</span>
+  <div class="description-wrapper">
+     <table class="arguments">
+  <thead>
+  <tr>
+    <th>Argument</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><code class="anchored">categoryId</code></td>
   <td>
     <code><a href="/WarriorBeatGraphQL/scalar/id">ID!</a></code>
   </td>

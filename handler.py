@@ -66,9 +66,19 @@ def handle_media_create(*args, **kwargs):
     return media
 
 
+def handle_article_by_category(*args, **kwargs):
+    """Returns Articles sorted by Category"""
+    article_table = DynamoDB('article')
+    category = kwargs.get("categoryId")
+    articles = [
+        art for art in article_table.all if category in art['categories']]
+    return articles
+
+
 resolvers = {
     'mediaCreate': handle_media_create,
-    'mediaDelete': handle_media_delete
+    'mediaDelete': handle_media_delete,
+    'articleGetByCategory': handle_article_by_category
 }
 
 

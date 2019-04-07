@@ -16,6 +16,12 @@ TABLES = {
     'media': {
         'table_name': os.environ.get("DB_MEDIA"),
     },
+    'article': {
+        'table_name': os.environ.get("DB_ARTICLE"),
+    },
+    'category': {
+        'table_name': os.environ.get("DB_CATEGORY"),
+    },
 }
 
 BUCKETS = {
