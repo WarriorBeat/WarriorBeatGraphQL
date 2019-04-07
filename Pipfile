@@ -11,6 +11,7 @@ isort = "*"
 [packages]
 boto3 = "*"
 requests = "*"
+python-slugify = "*"
 
 [requires]
 python_version = "3.7"

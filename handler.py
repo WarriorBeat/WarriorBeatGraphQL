@@ -12,6 +12,7 @@ import uuid
 import os
 from datetime import datetime
 from data import DynamoDB, S3Storage
+from slugify import slugify
 
 
 def get_utc_now():
@@ -73,6 +74,13 @@ def handle_article_by_category(*args, **kwargs):
     articles = [
         art for art in article_table.all if category in art['categories']]
     return articles
+
+
+def handle_slug(*args, **kwargs):
+    """returns slugified version of toSlug kwargs"""
+    text = kwargs.get("toSlug")
+    slug = slugify(text, lowercase=True, separator='_')
+    return slug
 
 
 resolvers = {
