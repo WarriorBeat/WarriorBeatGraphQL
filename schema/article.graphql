@@ -1,6 +1,7 @@
 type Query {
   articleGet(id: ID!): Article
   articleList(limit: Int, nextToken: String): ArticleConnection
+  articleGetByCategory(categoryId: ID!): [Article]
 }
 
 type Mutation {

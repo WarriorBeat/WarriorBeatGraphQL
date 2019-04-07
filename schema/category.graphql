@@ -1,5 +1,6 @@
 type Query {
   categoryGet(id: ID!): Category
+  categoryList(limit: Int, nextToken: String): CategoryConnection
 }
 
 type Mutation {
@@ -19,4 +20,12 @@ Category Resource Input
 """
 input CategoryInput {
   name: String!
+}
+
+"""
+Category Resource Pagination
+"""
+type CategoryConnection {
+  items: [Category]
+  nextToken: String
 }
