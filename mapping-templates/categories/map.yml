@@ -11,6 +11,12 @@
   request: 'dynamo/paginate.vtl'
   response: 'common-response.vtl'
 
+- dataSource: LambdaResolver
+  type: Category
+  field: slug
+  request: 'categories/category_slug-request.vtl'
+  response: 'common-response.vtl'
+
 # MUTATIONS
 - dataSource: Categories
   type: Mutation

@@ -1,0 +1,11 @@
+{
+    "version": "2017-02-28",
+    "operation": "Invoke",
+    "payload": {
+        "field": "category_slug",
+        #set($args = {
+            "toSlug": $ctx.source.name
+        })
+        "args":  $util.toJson($args)
+    }
+}
