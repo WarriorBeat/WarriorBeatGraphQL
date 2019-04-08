@@ -83,6 +83,24 @@ def handle_slug(*args, **kwargs):
     return slug
 
 
+def handle_paginate(*args, **kwargs):
+    """returns paginated resource scan"""
+    resource = kwargs.get("typeResource")
+    sort_by = kwargs.get("sortOrder", None)
+    limit = kwargs.get("limit", 20)
+    next_token = kwargs.get("nextToken", None)
+    table = DynamoDB(resource)
+    items = table.scan(limit=limit, next_token=next_token)
+    if sort_by:
+        key = sort_by.get('key')
+        values = sort_by.get('values')
+        sort_key = list(map(lambda x: values.index(
+            x[key]) if x[key] in values else len(items)+1, items))
+        items = [i for _, i in sorted(
+            zip(sort_key, items), key=lambda p: p[0])]
+    return {"items": items}
+
+
 resolvers = {
     'mediaCreate': handle_media_create,
     'mediaDelete': handle_media_delete,

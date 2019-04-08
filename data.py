@@ -43,6 +43,7 @@ class DynamoDB:
     """
 
     def __init__(self, table):
+        self.client = boto3.client('dynamodb')
         self.dynamodb = boto3.resource('dynamodb')
         self.table = TABLES[table]
         self.hash = self.table.get('primary_key', 'id')
@@ -84,6 +85,24 @@ class DynamoDB:
         """checks if an item exists in the database"""
         item = self.get_item(itemId)
         return False if item is None else item
+
+    def scan(self, limit=20, next_token=None):
+        """scans table with options"""
+        if next_token:
+            paginator = self.client.get_paginator('scan')
+            resp = paginator.paginate(
+                TableName=self.table['table_name'],
+                PaginationConfig={
+                    'MaxItems': limit,
+                    'PageSize': limit,
+                    'StartingToken': next_token
+                }
+            )
+            return resp['Items']
+        resp = self.db.scan(
+            Limit=limit
+        )
+        return resp["Items"]
 
     @property
     def all(self):
