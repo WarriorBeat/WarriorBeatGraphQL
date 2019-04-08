@@ -29,6 +29,12 @@
   request: 'authors/author_user-request.vtl'
   response: 'common-response.vtl'
 
+- dataSource: LambdaResolver
+  type: Author
+  field: title
+  request: 'authors/author_title-request.vtl'
+  response: 'common-response.vtl'
+
 # MUTATIONS
 - dataSource: Authors
   type: Mutation

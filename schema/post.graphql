@@ -28,6 +28,7 @@ type Author implements Node {
   profileImage: Media
   posts: [Article!]
   title: String
+  roles: [String!]
   bio: String
   staffYear: Int
   gradeYear: Int
@@ -50,7 +51,7 @@ input AuthorInput {
   name: String
   profileImage: ID
   posts: [ID!]
-  title: String
+  roles: [String!]
   bio: String
   staffYear: Int
   gradeYear: Int

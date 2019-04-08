@@ -101,12 +101,26 @@ def handle_paginate(*args, **kwargs):
     return {"items": items}
 
 
+def handle_author_title(*args, **kwargs):
+    """returns formatted Author role"""
+    title = kwargs.get("roles")
+    ignored_roles = ['administrator', 'author', 'contributor',
+                     'customer', 'editor', 'shop_manager', 'subscriber']
+    titles = [t for t in title if not t in ignored_roles]
+    for t in titles:
+        t = t.split('_')
+        t = [i.capitalize() for i in t]
+        title = " ".join(t)
+    return title
+
+
 resolvers = {
     'mediaCreate': handle_media_create,
     'mediaDelete': handle_media_delete,
     'articleGetByCategory': handle_article_by_category,
     'category_slug': handle_slug,
-    'categoryList': handle_paginate
+    'categoryList': handle_paginate,
+    'author_title': handle_author_title
 }
 
 
