@@ -64,3 +64,11 @@ interface Post {
   createdOn(format: String): String
   lastUpdated: String
 }
+
+"""
+Input for pagination sorting
+"""
+input SortOrderInput {
+  key: String!
+  values: [String!]!
+}

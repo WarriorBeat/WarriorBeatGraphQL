@@ -1,0 +1,9 @@
+{
+    "version": "2017-02-28",
+    "operation": "Invoke",
+    "payload": {
+        "field": "categoryList",
+        $util.qr($ctx.args.put("typeResource", "category"))
+        "args":  $util.toJson($ctx.args)
+    }
+}

@@ -1,6 +1,10 @@
 type Query {
   categoryGet(id: ID!): Category
-  categoryList(limit: Int, nextToken: String): CategoryConnection
+  categoryList(
+    limit: Int
+    nextToken: String
+    sortOrder: SortOrderInput
+  ): CategoryConnection
 }
 
 type Mutation {

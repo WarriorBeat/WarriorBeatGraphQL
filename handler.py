@@ -105,7 +105,8 @@ resolvers = {
     'mediaCreate': handle_media_create,
     'mediaDelete': handle_media_delete,
     'articleGetByCategory': handle_article_by_category,
-    'category_slug': handle_slug
+    'category_slug': handle_slug,
+    'categoryList': handle_paginate
 }
 
 

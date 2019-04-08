@@ -5,10 +5,10 @@
   request: 'dynamo/getItemById.vtl'
   response: 'common-response.vtl'
 
-- dataSource: Categories
+- dataSource: LambdaResolver
   type: Query
   field: categoryList
-  request: 'dynamo/paginate.vtl'
+  request: 'categories/categoryList-request.vtl'
   response: 'common-response.vtl'
 
 - dataSource: LambdaResolver
