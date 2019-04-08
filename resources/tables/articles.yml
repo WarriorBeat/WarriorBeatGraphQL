@@ -8,16 +8,16 @@ Resources:
       AttributeDefinitions:
         - AttributeName: id
           AttributeType: S
-        - AttributeName: authorId
+        - AttributeName: author
           AttributeType: S
       ProvisionedThroughput:
         ReadCapacityUnits: ${self:custom.tableThroughput}
         WriteCapacityUnits: ${self:custom.tableThroughput}
       TableName: Articles-${self:custom.stage}
       GlobalSecondaryIndexes:
-        - IndexName: authorId-index
+        - IndexName: author-index
           KeySchema:
-            - AttributeName: authorId
+            - AttributeName: author
               KeyType: HASH
           Projection:
             ProjectionType: ALL
