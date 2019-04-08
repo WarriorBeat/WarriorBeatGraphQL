@@ -6,7 +6,7 @@ type Query {
 }
 
 type Mutation {
-  userCreate: User
+  userCreate(input: UserInput!): User
   authorCreate(input: AuthorInput!): Author
   authorUpdate(id: ID!, expectedVersion: Int!, input: AuthorInput!): Author
 }
@@ -16,6 +16,14 @@ User Resource
 """
 type User implements Node {
   id: ID!
+  username: String
+}
+
+"""
+User Resource Input
+"""
+input UserInput {
+  username: String!
 }
 
 """
