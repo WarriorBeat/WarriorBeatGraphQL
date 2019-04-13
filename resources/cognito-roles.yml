@@ -31,8 +31,8 @@ Resources:
                   - 'appsync:GraphQL'
                 Resource:
                   # TODO: Update these, only for testing
-                  - '${self:custom.appSyncArn}/types/Query/*'
-                  - '${self:custom.appSyncArn}/types/Mutation/*'
+                  - '${self:custom.appSyncArn}/*'
+                  - '${self:custom.appSyncArn}/*'
 
   CognitoAuthorizedRole:
     Type: 'AWS::IAM::Role'
@@ -66,8 +66,8 @@ Resources:
                 Action:
                   - 'appsync:GraphQL'
                 Resource:
-                  - '${self:custom.appSyncArn}/types/Query/*'
-                  - '${self:custom.appSyncArn}/types/Mutation/*'
+                  - '${self:custom.appSyncArn}/*'
+                  - '${self:custom.appSyncArn}/*'
 
   IdentityPoolRoleMapping:
     Type: 'AWS::Cognito::IdentityPoolRoleAttachment'
