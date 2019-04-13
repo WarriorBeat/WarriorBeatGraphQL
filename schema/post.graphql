@@ -23,7 +23,8 @@ type User implements Node {
 User Resource Input
 """
 input UserInput {
-  username: String!
+  id: ID!
+  username: String
 }
 
 """
