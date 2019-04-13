@@ -28,6 +28,16 @@ Resources:
         - ADMIN_NO_SRP_AUTH
       GenerateSecret: false
 
+  IdentityPool:
+    Type: 'AWS::Cognito::IdentityPool'
+    Properties:
+      IdentityPoolName: WarriorBeatIdentity${self:provider.stage}
+      AllowUnauthenticatedIdentities: true
+      CognitoIdentityProviders:
+        - ClientId:
+            Ref: CognitoUserPoolClient
+          ProviderName: { Fn::GetAtt: [CognitoUserPool, ProviderName] }
+
 Outputs:
   UserPoolId:
     Value:
@@ -40,3 +50,7 @@ Outputs:
   UserPoolWebClientId:
     Value:
       Ref: CognitoUserPoolWebClient
+
+  IdentityPoolId:
+    Value:
+      Ref: IdentityPool
