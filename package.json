@@ -6,13 +6,14 @@
   "author": "BradenM",
   "license": "MIT",
   "scripts": {
-    "deploy": "sls deploy",
+    "deploy": "sls deploy && yarn deploy:exports",
     "deploy:handler": "yarn run deploy -f lambda_handler",
+    "deploy:exports": "rake upload_exports",
     "clean:sls": "sls requirements clean && sls requirements cleanCache && rm -rf .serverless",
     "clean": "yarn run clean:sls && rm -rf node_modules && yarn cache clean && yarn",
     "local": "sls offline start",
     "stitch": "node stitch.js",
-    "gendoc": "yarn run stitch && ruby gendocs.rb && rm -rf .sass-cache && rm schema.graphql"
+    "gendoc": "yarn run stitch && rake gendoc && rm schema.graphql"
   },
   "dependencies": {
     "aws-amplify-serverless-plugin": "^1.4.1",
