@@ -67,12 +67,14 @@ custom:
   amplify:
     - filename: amplify/aws-exports.js
       type: javascript
+      appClient: CognitoUserPoolClient
+      s3Bucket: disabled
   # END AWS Amplify ===================
 
   # AppSync ===================
   appSync:
     name: WarriorBeatAppSync-${self:custom.stage}
-    authenticationType: API_KEY
+    authenticationType: AWS_IAM
     schema:
       - schema/base.graphql
       - schema/polls.graphql

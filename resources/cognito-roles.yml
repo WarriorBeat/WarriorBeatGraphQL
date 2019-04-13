@@ -30,7 +30,9 @@ Resources:
                 Action:
                   - 'appsync:GraphQL'
                 Resource:
+                  # TODO: Update these, only for testing
                   - '${self:custom.appSyncArn}/types/Query/*'
+                  - '${self:custom.appSyncArn}/types/Mutation/*'
 
   CognitoAuthorizedRole:
     Type: 'AWS::IAM::Role'
