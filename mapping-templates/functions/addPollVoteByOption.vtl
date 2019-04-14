@@ -11,6 +11,7 @@ $util.qr($ctx.stash.put("incAttr", "totalVotes"))
     },
     "attributeValues" : {
         #set( $createDate = $util.time.nowISO8601()  )
-        "createdOn" : $util.dynamodb.toDynamoDBJson("${createDate}")
+        "createdOn" : $util.dynamodb.toDynamoDBJson("${createDate}"),
+        "userId" : $util.dynamodb.toDynamoDBJson($ctx.stash.userId)
     }
 }
