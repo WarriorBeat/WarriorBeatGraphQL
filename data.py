@@ -8,6 +8,7 @@ import os
 
 import boto3
 import requests
+from boto3.dynamodb.conditions import Key, Attr
 from botocore.exceptions import ClientError
 
 
@@ -77,6 +78,25 @@ class DynamoDB:
                 self.hash: itemId
             })
             return resp.get('Item')
+        except ClientError as e:
+            print(e)
+            return None
+
+    def query(self, itemId, key=None, range_key=None, index=None):
+        """queries for item from database"""
+        key_val = key or self.hash
+        query = {
+            "KeyConditionExpression": Key(key_val).eq(itemId),
+        }
+        if range_key:
+            expr = query["KeyConditionExpression"]
+            query["KeyConditionExpression"] = expr & Key(
+                range_key[0]).eq(range_key[1])
+        if index:
+            query["IndexName"] = index
+        try:
+            resp = self.db.query(**query)
+            return resp.get('Items')
         except ClientError as e:
             print(e)
             return None
