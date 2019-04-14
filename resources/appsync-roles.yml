@@ -45,6 +45,8 @@ Resources:
                   - ${cf:${self:custom.stack}.PollOptionsTableArn}/*
                   - ${cf:${self:custom.stack}.PollOptionsTableArn}
                   - ${cf:${self:custom.stack}.PollOptionsTableArn}/*
+                  - ${cf:${self:custom.stack}.PollVotesTableArn}
+                  - ${cf:${self:custom.stack}.PollVotesTableArn}/*
                   # Users Table
                   - ${cf:${self:custom.stack}.UsersTableArn}
                   - ${cf:${self:custom.stack}.UsersTableArn}/*

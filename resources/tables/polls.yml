@@ -52,6 +52,8 @@ Resources:
           AttributeType: S
         - AttributeName: optionId
           AttributeType: S
+        - AttributeName: userId
+          AttributeType: S
       ProvisionedThroughput:
         ReadCapacityUnits: ${self:custom.tableThroughput}
         WriteCapacityUnits: ${self:custom.tableThroughput}
@@ -61,6 +63,17 @@ Resources:
           KeySchema:
             - AttributeName: optionId
               KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: ${self:custom.tableThroughput}
+            WriteCapacityUnits: ${self:custom.tableThroughput}
+        - IndexName: userId-index
+          KeySchema:
+            - AttributeName: userId
+              KeyType: HASH
+            - AttributeName: optionId
+              KeyType: RANGE
           Projection:
             ProjectionType: ALL
           ProvisionedThroughput:
