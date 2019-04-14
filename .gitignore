@@ -210,3 +210,4 @@ amplify/
 
 ### VSCode ###
 .vscode
+\.sass-cache/
