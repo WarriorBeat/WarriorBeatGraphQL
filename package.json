@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "deploy": "sls deploy && yarn deploy:exports",
-    "deploy:handler": "yarn run deploy -f lambda_handler",
+    "deploy:handler": "sls deploy -f lambda_handler",
     "deploy:exports": "rake upload_exports",
     "clean:sls": "sls requirements clean && sls requirements cleanCache && rm -rf .serverless",
     "clean": "yarn run clean:sls && rm -rf node_modules && yarn cache clean && yarn",

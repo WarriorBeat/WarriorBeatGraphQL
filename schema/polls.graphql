@@ -41,6 +41,10 @@ type Poll implements Node {
   lastUpdated: String
   totalVotes: Int
   options: [PollOption!]
+  """
+  Query if user has voted on Poll, if so return voted option
+  """
+  hasVoted(userId: ID!): PollOption
 }
 
 """

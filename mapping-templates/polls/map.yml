@@ -30,6 +30,12 @@
   request: 'polls/pollOption_votes-request.vtl'
   response: 'list-size-response.vtl'
 
+- dataSource: LambdaResolver
+  type: Poll
+  field: hasVoted
+  request: 'polls/poll_hasVoted-request.vtl'
+  response: 'common-response.vtl'
+
 # MUTATIONS
 - type: Mutation
   field: pollAddVote

@@ -13,6 +13,7 @@ import os
 from datetime import datetime
 from data import DynamoDB, S3Storage
 from slugify import slugify
+from itertools import chain
 
 
 def get_utc_now():
@@ -114,13 +115,34 @@ def handle_author_title(*args, **kwargs):
     return title
 
 
+def handle_poll_has_voted(*args, **kwargs):
+    """checks if user has voted on poll, returns PollOption"""
+    user_id = kwargs.get("userId")
+    poll = kwargs.get("poll")
+    options_table = DynamoDB("poll_options")
+    votes_table = DynamoDB("poll_votes")
+    options = options_table.query(
+        poll['id'], key="pollId", index="pollId-index")
+    option_ids = [opt.get('id') for opt in options]
+    user_votes = list(chain.from_iterable([votes_table.query(
+        user_id, key="userId", range_key=('optionId', i), index="userId-index") for i in option_ids]))
+    print("User Votes:", user_votes)
+    if len(user_votes) >= 1:
+        voted_option = next(
+            i for i in options if i['id'] == user_votes[0]['optionId'])
+        print("Voted Option:", voted_option)
+        return voted_option
+    return None
+
+
 resolvers = {
     'mediaCreate': handle_media_create,
     'mediaDelete': handle_media_delete,
     'articleGetByCategory': handle_article_by_category,
     'category_slug': handle_slug,
     'categoryList': handle_paginate,
-    'author_title': handle_author_title
+    'author_title': handle_author_title,
+    'poll_hasVoted': handle_poll_has_voted
 }
 
 

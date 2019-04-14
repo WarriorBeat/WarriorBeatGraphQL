@@ -23,6 +23,12 @@ TABLES = {
     'category': {
         'table_name': os.environ.get("DB_CATEGORY"),
     },
+    'poll_votes': {
+        'table_name': os.environ.get("DB_POLLVOTES")
+    },
+    'poll_options': {
+        'table_name': os.environ.get("DB_POLLOPTIONS")
+    }
 }
 
 BUCKETS = {

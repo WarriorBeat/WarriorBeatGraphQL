@@ -1,0 +1,9 @@
+{
+    "version": "2017-02-28",
+    "operation": "Invoke",
+    "payload": {
+        "field": "poll_hasVoted",
+        #set( $args = {"poll": $ctx.source, "userId": $ctx.args.userId})
+        "args":  $util.toJson($args)
+    }
+}

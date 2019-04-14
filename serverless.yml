@@ -10,6 +10,8 @@ provider:
     DB_MEDIA: { Ref: MediaTable }
     DB_ARTICLE: { Ref: ArticlesTable }
     DB_CATEGORY: { Ref: CategoriesTable }
+    DB_POLLVOTES: { Ref: PollVotesTable }
+    DB_POLLOPTIONS: { Ref: PollOptionsTable }
 
 plugins:
   - serverless-python-requirements
