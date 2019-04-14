@@ -16,7 +16,8 @@ User Resource
 """
 type User implements Node {
   id: ID!
-  username: String!
+  authenticated: Boolean!
+  username: String
   email: String
 }
 
@@ -25,7 +26,8 @@ User Resource Input
 """
 input UserInput {
   id: ID!
-  username: String!
+  authenticated: Boolean
+  username: String
   email: String
 }
 
