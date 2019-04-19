@@ -16,3 +16,9 @@
   field: createdOn
   request: 'posts/post_createdOn-request.vtl'
   response: 'common-response.vtl'
+
+- dataSource: LambdaResolver
+  type: Query
+  field: metaGet
+  request: 'posts/metaGet-request.vtl'
+  response: 'common-response.vtl'

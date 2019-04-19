@@ -3,6 +3,7 @@ type Query {
   authorGet(id: ID!): Author
   authorList(limit: Int, nextToken: String): AuthorConnection
   postGet(id: ID!): Post
+  metaGet(key: String!): Meta
 }
 
 type Mutation {
@@ -85,4 +86,12 @@ Input for pagination sorting
 input SortOrderInput {
   key: String!
   values: [String!]!
+}
+
+"""
+Meta Type for Meta Information
+"""
+type Meta {
+  key: String!
+  content: String!
 }
