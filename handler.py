@@ -7,15 +7,14 @@ try:
     import unzip_requirements
 except ImportError:
     pass
-import json
 import uuid
-import os
 from datetime import datetime
+from itertools import chain
+
+import requests
+from bs4 import BeautifulSoup
 from data import DynamoDB, S3Storage
 from slugify import slugify
-from itertools import chain
-from bs4 import BeautifulSoup
-import requests
 
 
 def get_utc_now():

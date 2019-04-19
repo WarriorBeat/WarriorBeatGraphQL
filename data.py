@@ -7,10 +7,10 @@
 import os
 
 import boto3
-import requests
-from boto3.dynamodb.conditions import Key, Attr
+from boto3.dynamodb.conditions import Key
 from botocore.exceptions import ClientError
 
+import requests
 
 # Connection Info
 TABLES = {
