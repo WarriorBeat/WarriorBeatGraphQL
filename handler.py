@@ -14,6 +14,8 @@ from datetime import datetime
 from data import DynamoDB, S3Storage
 from slugify import slugify
 from itertools import chain
+from bs4 import BeautifulSoup
+import requests
 
 
 def get_utc_now():
@@ -135,6 +137,31 @@ def handle_poll_has_voted(*args, **kwargs):
     return None
 
 
+def handle_get_about_meta(*args, **kwargs):
+    """Returns About Us Meta Info"""
+    url = "https://ogwarriorbeat.com/about/"
+    page = requests.get(url)
+    html = BeautifulSoup(page.content, 'html.parser')
+    content = html.find("div", class_="postarea")
+    [s.extract() for s in content('h1')]
+    cont = content.find('a').parent
+    cont.extract()
+    return {
+        "key": "about",
+        "content": str(content)
+    }
+
+
+def handle_get_meta(*args, **kwargs):
+    """Handles Meta Info"""
+    meta_resolver = {
+        'about': handle_get_about_meta
+    }
+    key = kwargs.get("key")
+    resolve = meta_resolver[key]
+    return resolve(*args, **kwargs)
+
+
 resolvers = {
     'mediaCreate': handle_media_create,
     'mediaDelete': handle_media_delete,
@@ -142,7 +169,8 @@ resolvers = {
     'category_slug': handle_slug,
     'categoryList': handle_paginate,
     'author_title': handle_author_title,
-    'poll_hasVoted': handle_poll_has_voted
+    'poll_hasVoted': handle_poll_has_voted,
+    'resolveMeta': handle_get_meta
 }
 
 

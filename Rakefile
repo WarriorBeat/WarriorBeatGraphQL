@@ -18,6 +18,7 @@ end
 # Upload AWS Exports to Gist
 task :upload_exports do
     puts("Uploading AWS Exports...".cyan)
+    puts("Gist ID: #{ENV['AWS_EXPORTS_GIST_ID']}".yellow)
     content = File.read(AWS_EXPORTS)
     Gist.gist(content, filename:"aws-exports.js", update: ENV['AWS_EXPORTS_GIST_ID'], public:false)
     puts("Done!".bold.green)
