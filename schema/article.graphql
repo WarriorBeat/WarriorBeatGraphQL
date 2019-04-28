@@ -7,6 +7,7 @@ type Query {
 type Mutation {
   articleCreate(input: ArticleInput!): Article
   articleUpdate(id: ID!, expectedVersion: Int!, input: ArticleInput!): Article
+  articleLike(id: ID!, userId: ID!): Article
 }
 
 """
@@ -24,6 +25,7 @@ type Article implements Node & Post {
   content: String
   coverImage: Media
   media: [Media!]
+  likes: Int
 }
 
 """

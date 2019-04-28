@@ -78,6 +78,29 @@ def handle_article_by_category(*args, **kwargs):
     return articles
 
 
+def handle_article_like(*args, **kwargs):
+    """handles user liking article, returns article"""
+    post_id = kwargs.get('id')
+    user_id = kwargs.get('userId')
+    likes_table = DynamoDB("article_likes")
+    article_table = DynamoDB("article")
+    article = article_table.get_item(post_id)
+    query_filter = ("postId", post_id)
+    likes = likes_table.query(user_id, key="userId",
+                              filters=query_filter, index="user-index")
+    if any(likes):
+        like = likes[0]
+        likes_table.delete_item(like['id'])
+        return article
+    like = {
+        "id": str(uuid.uuid4()),
+        "postId": post_id,
+        "userId": user_id
+    }
+    likes_table.add_item(like)
+    return article
+
+
 def handle_slug(*args, **kwargs):
     """returns slugified version of toSlug kwargs"""
     text = kwargs.get("toSlug")

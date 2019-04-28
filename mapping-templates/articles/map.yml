@@ -47,3 +47,9 @@
   field: articleUpdate
   request: 'dynamo/updateItemById.vtl'
   response: 'common-response.vtl'
+
+- dataSource: LambdaResolver
+  type: Mutation
+  field: articleLike
+  request: 'articles/articleLike-request.vtl'
+  response: 'common-response.vtl'
