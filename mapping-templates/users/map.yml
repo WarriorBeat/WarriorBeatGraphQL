@@ -11,6 +11,12 @@
   request: 'users/user_likes-request.vtl'
   response: 'common-response.vtl'
 
+- dataSource: LambdaResolver
+  type: User
+  field: subscriptions
+  request: 'users/user_subscriptions-request.vtl'
+  response: 'common-response.vtl'
+
 # MUTATIONS
 - dataSource: Users
   type: Mutation

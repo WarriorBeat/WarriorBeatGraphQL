@@ -22,6 +22,7 @@ type User implements Node {
   username: String
   email: String
   likes: [Article]
+  subscriptions: [Author]
 }
 
 """

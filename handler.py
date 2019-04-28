@@ -220,6 +220,19 @@ def handle_user_likes(*args, **kwargs):
     return articles
 
 
+def handle_user_subscriptions(*args, **kwargs):
+    """returns subscribed authors"""
+    user_id = kwargs.get("id")
+    subs_table = DynamoDB("user_subs")
+    authors_table = DynamoDB("author")
+    subs = subs_table.query(user_id, key="userId", index="user-index")
+    if not any(subs):
+        return []
+    author_ids = [i.get('authorId') for i in subs]
+    authors = [authors_table.get_item(i) for i in author_ids]
+    return authors
+
+
 resolvers = {
     'mediaCreate': handle_media_create,
     'mediaDelete': handle_media_delete,
@@ -232,6 +245,7 @@ resolvers = {
     'poll_hasVoted': handle_poll_has_voted,
     'resolveMeta': handle_get_meta,
     'user_likes': handle_user_likes,
+    'user_subscriptions': handle_user_subscriptions,
 }
 
 
