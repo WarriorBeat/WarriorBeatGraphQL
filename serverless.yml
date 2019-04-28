@@ -14,6 +14,9 @@ provider:
     DB_POLLVOTES: { Ref: PollVotesTable }
     DB_POLLOPTIONS: { Ref: PollOptionsTable }
     DB_USERS: { Ref: UsersTable }
+    DB_USERSUBSCRIPTIONS: { Ref: UserSubscriptionsTable }
+    DB_AUTHORS: { Ref: AuthorsTable }
+    
 
 plugins:
   - serverless-python-requirements

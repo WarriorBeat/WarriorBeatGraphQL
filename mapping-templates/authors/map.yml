@@ -47,3 +47,9 @@
   field: authorUpdate
   request: 'dynamo/updateItemById.vtl'
   response: 'common-response.vtl'
+
+- dataSource: LambdaResolver
+  type: Mutation
+  field: authorSubscribe
+  request: 'authors/authorSubscribe-request.vtl'
+  response: 'common-response.vtl'

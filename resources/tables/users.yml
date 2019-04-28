@@ -52,5 +52,5 @@ Resources:
 Outputs:
   UsersTableArn:
     Value: { Fn::GetAtt: [UsersTable, Arn] }
-  UserSubscriptionsArn:
+  UserSubscriptionsTableArn:
     Value: { Fn::GetAtt: [UserSubscriptionsTable, Arn] }

@@ -139,6 +139,29 @@ def handle_author_title(*args, **kwargs):
     return title
 
 
+def handle_author_subscribe(*args, **kwargs):
+    """handles user sub to author, returns author"""
+    author_id = kwargs.get('id')
+    user_id = kwargs.get('userId')
+    subs_table = DynamoDB('user_subs')
+    author_table = DynamoDB('author')
+    author = author_table.get_item(author_id)
+    query_filter = ("authorId", author_id)
+    subs = subs_table.query(user_id, key="userId",
+                            filters=query_filter, index="user-index")
+    if any(subs):
+        subscription = subs[0]
+        subs_table.delete_item(subscription['id'])
+        return author
+    subscription = {
+        "id": str(uuid.uuid4()),
+        "userId": user_id,
+        "authorId": author_id
+    }
+    subs_table.add_item(subscription)
+    return author
+
+
 def handle_poll_has_voted(*args, **kwargs):
     """checks if user has voted on poll, returns PollOption"""
     user_id = kwargs.get("userId")
@@ -205,6 +228,7 @@ resolvers = {
     'category_slug': handle_slug,
     'categoryList': handle_paginate,
     'author_title': handle_author_title,
+    'authorSubscribe': handle_author_subscribe,
     'poll_hasVoted': handle_poll_has_voted,
     'resolveMeta': handle_get_meta,
     'user_likes': handle_user_likes,

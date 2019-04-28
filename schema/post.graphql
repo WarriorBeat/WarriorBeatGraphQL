@@ -10,6 +10,7 @@ type Mutation {
   userCreate(input: UserInput!): User
   authorCreate(input: AuthorInput!): Author
   authorUpdate(id: ID!, expectedVersion: Int!, input: AuthorInput!): Author
+  authorSubscribe(id: ID!, userId: ID!): Author
 }
 
 """

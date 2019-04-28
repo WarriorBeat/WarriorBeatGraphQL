@@ -20,6 +20,9 @@ TABLES = {
     'article': {
         'table_name': os.environ.get("DB_ARTICLE"),
     },
+    'article_likes': {
+        'table_name': os.environ.get("DB_ARTICLELIKES")
+    },
     'category': {
         'table_name': os.environ.get("DB_CATEGORY"),
     },
@@ -32,8 +35,11 @@ TABLES = {
     'users': {
         'table_name': os.environ.get("DB_USERS")
     },
-    'article_likes': {
-        'table_name': os.environ.get("DB_ARTICLELIKES")
+    'user_subs': {
+        'table_name': os.environ.get("DB_USERSUBSCRIPTIONS")
+    },
+    'author': {
+        'table_name': os.environ.get("DB_AUTHORS")
     }
 }
 
