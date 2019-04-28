@@ -7,7 +7,7 @@
 import os
 
 import boto3
-from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Key, Attr
 from botocore.exceptions import ClientError
 
 import requests
@@ -94,7 +94,35 @@ class DynamoDB:
             print(e)
             return None
 
-    def query(self, itemId, key=None, range_key=None, index=None):
+    def update_list(self, item, update, append=False, id_key='id', key=None, range_key=None, return_val=None):
+        """updates item list attribute"""
+        key_val = key or self.hash
+        return_val = return_val or "NONE"
+        item_id = item.get(id_key)
+        up_attr, up_val = update
+        up_val = up_val if type(up_val) is list else [up_val]
+        update_expr = f":value"
+        update_vals = {
+            ":value": up_val
+        }
+        if append:
+            update_expr = f"list_append(if_not_exists({up_attr}, :emptyList), :value)"
+            update_vals[":emptyList"] = []
+        update = {
+            "Key": {
+                key_val: item_id
+            },
+            "ReturnValues": return_val,
+            "UpdateExpression": f"set {up_attr} = {update_expr}",
+            "ExpressionAttributeValues": update_vals
+        }
+        if range_key:
+            update["Key"][range_key[0]] = range_key[1]
+        resp = self.db.update_item(**update)
+        response = resp.get("Attributes", resp)
+        return response
+
+    def query(self, itemId, key=None, range_key=None, index=None, filters=None):
         """queries for item from database"""
         key_val = key or self.hash
         query = {
@@ -106,6 +134,13 @@ class DynamoDB:
                 range_key[0]).eq(range_key[1])
         if index:
             query["IndexName"] = index
+        if filters:
+            filters = filters if type(filters) is list else [filters]
+            init_f = filters[0]
+            query["FilterExpression"] = Attr(init_f[0]).eq(init_f[1])
+            for f in filters[1:]:
+                query["FilterExpression"] = query["FilterExpression"] & Attr(
+                    f[0]).eq(f[1])
         try:
             resp = self.db.query(**query)
             return resp.get('Items')
