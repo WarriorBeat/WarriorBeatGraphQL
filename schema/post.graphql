@@ -50,6 +50,7 @@ type Author implements Node {
   staffYear: Int
   gradeYear: Int
   version: Int
+  subscribers: Int
 }
 
 """

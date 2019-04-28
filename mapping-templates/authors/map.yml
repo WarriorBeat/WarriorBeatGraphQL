@@ -35,6 +35,12 @@
   request: 'authors/author_title-request.vtl'
   response: 'common-response.vtl'
 
+- dataSource: UserSubscriptions
+  type: Author
+  field: subscribers
+  request: 'authors/author_subscribers-request.vtl'
+  response: 'list-size-response.vtl'
+
 # MUTATIONS
 - dataSource: Authors
   type: Mutation
