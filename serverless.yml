@@ -127,10 +127,20 @@ resources:
 package:
   exclude:
     - .git/**
-    - .amplify/**
-    - .seed-data/**
+    - .vscode/**
+    - .sass-cache/**
+    - amplify/**
+    - seed-data/**
     - node_modules/**
     - docs/**
+    - mapping-templates/**
+    - schema/**
+    - resources/**
+    - Gem*
+    - yarn.lock
+    - Rakefile
+    - package.json
+    - '*.js'
 
 functions:
   lambda_handler:
