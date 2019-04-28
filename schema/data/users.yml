@@ -15,3 +15,20 @@
         Resource:
           - ${cf:${self:custom.stack}.UsersTableArn}
           - ${cf:${self:custom.stack}.UsersTableArn}/*
+- type: AMAZON_DYNAMODB
+  name: UserSubscriptions
+  description: 'User Subscriptions Table'
+  config:
+    tableName: { Ref: UserSubscriptionsTable }
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - 'dynamodb:Query'
+          - 'dynamodb:Scan'
+          - 'dynamodb:UpdateItem'
+          - 'dynamodb:DeleteItem'
+          - 'dynamodb:PutItem'
+          - 'dynamodb:GetItem'
+        Resource:
+          - ${cf:${self:custom.stack}.UserSubscriptionsTableArn}
+          - ${cf:${self:custom.stack}.UserSubscriptionsTableArn}/*

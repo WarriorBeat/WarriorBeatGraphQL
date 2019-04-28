@@ -50,6 +50,8 @@ Resources:
                   # Users Table
                   - ${cf:${self:custom.stack}.UsersTableArn}
                   - ${cf:${self:custom.stack}.UsersTableArn}/*
+                  - ${cf:${self:custom.stack}.UserSubscriptionsTableArn}
+                  - ${cf:${self:custom.stack}.UserSubscriptionsTableArn}/*
                   # Articles Table
                   - ${cf:${self:custom.stack}.ArticlesTableArn}
                   - ${cf:${self:custom.stack}.ArticlesTableArn}/*

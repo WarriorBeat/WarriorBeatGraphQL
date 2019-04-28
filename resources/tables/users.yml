@@ -12,7 +12,45 @@ Resources:
         ReadCapacityUnits: ${self:custom.tableThroughput}
         WriteCapacityUnits: ${self:custom.tableThroughput}
       TableName: Users-${self:custom.stage}
+  UserSubscriptionsTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: authorId
+          AttributeType: S
+      ProvisionedThroughput:
+        ReadCapacityUnits: ${self:custom.tableThroughput}
+        WriteCapacityUnits: ${self:custom.tableThroughput}
+      TableName: UserSubscriptions-${self:custom.stage}
+      GlobalSecondaryIndexes:
+        - IndexName: user-index
+          KeySchema:
+            - AttributeName: userId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: ${self:custom.tableThroughput}
+            WriteCapacityUnits: ${self:custom.tableThroughput}
+        - IndexName: author-index
+          KeySchema:
+            - AttributeName: authorId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: ${self:custom.tableThroughput}
+            WriteCapacityUnits: ${self:custom.tableThroughput}
 
 Outputs:
   UsersTableArn:
     Value: { Fn::GetAtt: [UsersTable, Arn] }
+  UserSubscriptionsArn:
+    Value: { Fn::GetAtt: [UserSubscriptionsTable, Arn] }
