@@ -1,0 +1,17 @@
+{
+    "version": "2017-02-28",
+    "operation": "Query",
+    "index": "post-index",
+    "query": {
+        "expression": "postId = :id",
+        "expressionValues": {
+            ":id": $util.dynamodb.toDynamoDBJson($ctx.source.id),
+        }
+    },
+    "filter": {
+        "expression": "userId = :userId",
+        "expressionValues": {
+            ":userId": $util.dynamodb.toDynamoDBJson($ctx.args.userId),
+        }
+    }
+}

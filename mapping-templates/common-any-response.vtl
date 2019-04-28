@@ -1,0 +1,3 @@
+#set ( $result = $util.defaultIfNull($ctx.result.items, $ctx.result) )
+#set( $value = !$result.isEmpty() )
+$util.toJson($value)

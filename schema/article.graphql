@@ -26,6 +26,10 @@ type Article implements Node & Post {
   coverImage: Media
   media: [Media!]
   likes: Int
+  """
+  Checks if User has Liked Post
+  """
+  hasLiked(userId: ID!): Boolean
 }
 
 """

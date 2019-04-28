@@ -41,6 +41,12 @@
   request: 'articles/article_likes-request.vtl'
   response: 'list-size-response.vtl'
 
+- dataSource: ArticleLikes
+  type: Article
+  field: hasLiked
+  request: 'articles/article_hasLiked-request.vtl'
+  response: 'common-any-response.vtl'
+
 # MUTATIONS
 - dataSource: Articles
   type: Mutation
