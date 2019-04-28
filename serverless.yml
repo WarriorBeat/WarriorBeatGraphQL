@@ -9,9 +9,11 @@ provider:
     S3_MEDIA: { Ref: MediaBucket }
     DB_MEDIA: { Ref: MediaTable }
     DB_ARTICLE: { Ref: ArticlesTable }
+    DB_ARTICLELIKES: { Ref: ArticleLikesTable }
     DB_CATEGORY: { Ref: CategoriesTable }
     DB_POLLVOTES: { Ref: PollVotesTable }
     DB_POLLOPTIONS: { Ref: PollOptionsTable }
+    DB_USERS: { Ref: UsersTable }
 
 plugins:
   - serverless-python-requirements

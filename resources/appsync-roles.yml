@@ -53,6 +53,8 @@ Resources:
                   # Articles Table
                   - ${cf:${self:custom.stack}.ArticlesTableArn}
                   - ${cf:${self:custom.stack}.ArticlesTableArn}/*
+                  - ${cf:${self:custom.stack}.ArticleLikesTableArn}
+                  - ${cf:${self:custom.stack}.ArticleLikesTableArn}/*
                   # Authors Table
                   - ${cf:${self:custom.stack}.AuthorsTableArn}
                   - ${cf:${self:custom.stack}.AuthorsTableArn}/*

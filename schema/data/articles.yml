@@ -15,3 +15,20 @@
         Resource:
           - ${cf:${self:custom.stack}.ArticlesTableArn}
           - ${cf:${self:custom.stack}.ArticlesTableArn}/*
+- type: AMAZON_DYNAMODB
+  name: ArticleLikes
+  description: 'Article Likes Table'
+  config:
+    tableName: { Ref: ArticleLikesTable }
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - 'dynamodb:Query'
+          - 'dynamodb:Scan'
+          - 'dynamodb:UpdateItem'
+          - 'dynamodb:DeleteItem'
+          - 'dynamodb:PutItem'
+          - 'dynamodb:GetItem'
+        Resource:
+          - ${cf:${self:custom.stack}.ArticleLikesTableArn}
+          - ${cf:${self:custom.stack}.ArticleLikesTableArn}/*

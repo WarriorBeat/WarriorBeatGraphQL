@@ -28,6 +28,12 @@ TABLES = {
     },
     'poll_options': {
         'table_name': os.environ.get("DB_POLLOPTIONS")
+    },
+    'users': {
+        'table_name': os.environ.get("DB_USERS")
+    },
+    'article_likes': {
+        'table_name': os.environ.get("DB_ARTICLELIKES")
     }
 }
 
