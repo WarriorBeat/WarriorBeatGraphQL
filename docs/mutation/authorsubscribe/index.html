@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="description" content="ArticleConnection GraphQL documentation">
+    <meta name="description" content="authorSubscribe GraphQL documentation">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>ArticleConnection</title>
+    <title>authorSubscribe</title>
     <link rel="stylesheet" href="/WarriorBeatGraphQL/assets/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
     <script>
@@ -490,17 +490,78 @@
       <div id="content">
 
         <h1>
-<a id="articleconnection" class="anchor" href="#articleconnection" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ArticleConnection</h1>
-<p>Article Resource Pagination</p>
+<a id="authorsubscribe" class="anchor" href="#authorsubscribe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>authorSubscribe</h1>
 <h2>
-<a id="fields" class="anchor" href="#fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields</h2>
+<a id="input-fields" class="anchor" href="#input-fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Input fields</h2>
 <div class="field-entry ">
-  <span id="items" class="field-name anchored">items (<code><a href="/WarriorBeatGraphQL/object/article">[Article]</a></code>)</span>
+  <span id="id" class="field-name anchored">id (<code><a href="/WarriorBeatGraphQL/scalar/id">ID!</a></code>)</span>
   <div class="description-wrapper">
   </div>
 </div>
 <div class="field-entry ">
-  <span id="nexttoken" class="field-name anchored">nextToken (<code><a href="/WarriorBeatGraphQL/scalar/string">String</a></code>)</span>
+  <span id="userid" class="field-name anchored">userId (<code><a href="/WarriorBeatGraphQL/scalar/id">ID!</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<h2>
+<a id="return-fields" class="anchor" href="#return-fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Return fields</h2>
+<div class="field-entry ">
+  <span id="id" class="field-name anchored">id (<code><a href="/WarriorBeatGraphQL/scalar/id">ID!</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="user" class="field-name anchored">user (<code><a href="/WarriorBeatGraphQL/object/user">User!</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="name" class="field-name anchored">name (<code><a href="/WarriorBeatGraphQL/scalar/string">String</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="profileimage" class="field-name anchored">profileImage (<code><a href="/WarriorBeatGraphQL/object/media">Media</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="posts" class="field-name anchored">posts (<code><a href="/WarriorBeatGraphQL/object/article">[Article!]</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="title" class="field-name anchored">title (<code><a href="/WarriorBeatGraphQL/scalar/string">String</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="roles" class="field-name anchored">roles (<code><a href="/WarriorBeatGraphQL/scalar/string">[String!]</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="bio" class="field-name anchored">bio (<code><a href="/WarriorBeatGraphQL/scalar/string">String</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="staffyear" class="field-name anchored">staffYear (<code><a href="/WarriorBeatGraphQL/scalar/int">Int</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="gradeyear" class="field-name anchored">gradeYear (<code><a href="/WarriorBeatGraphQL/scalar/int">Int</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="version" class="field-name anchored">version (<code><a href="/WarriorBeatGraphQL/scalar/int">Int</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="subscribers" class="field-name anchored">subscribers (<code><a href="/WarriorBeatGraphQL/scalar/int">Int</a></code>)</span>
   <div class="description-wrapper">
   </div>
 </div>
