@@ -184,15 +184,30 @@ def handle_get_meta(*args, **kwargs):
     return resolve(*args, **kwargs)
 
 
+def handle_user_likes(*args, **kwargs):
+    """returns liked user articles"""
+    user_id = kwargs.get("id")
+    likes_table = DynamoDB("article_likes")
+    article_table = DynamoDB("article")
+    likes = likes_table.query(user_id, key="userId", index="user-index")
+    if not any(likes):
+        return []
+    posts = [i.get('postId') for i in likes]
+    articles = [article_table.get_item(i) for i in posts]
+    return articles
+
+
 resolvers = {
     'mediaCreate': handle_media_create,
     'mediaDelete': handle_media_delete,
     'articleGetByCategory': handle_article_by_category,
+    'articleLike': handle_article_like,
     'category_slug': handle_slug,
     'categoryList': handle_paginate,
     'author_title': handle_author_title,
     'poll_hasVoted': handle_poll_has_voted,
-    'resolveMeta': handle_get_meta
+    'resolveMeta': handle_get_meta,
+    'user_likes': handle_user_likes,
 }
 
 
